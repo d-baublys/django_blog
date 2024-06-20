@@ -1,0 +1,37 @@
+{% extends 'main.html' %}
+
+{% block main-body %}
+    <h2>Search Results for "{{ query }}"</h2>
+
+    {% if results %}
+        {% for result in results %}
+            <h3>{{ result.title|upper }}</h3>
+            <p class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</p>
+            <p class="post-body">{{ result.content }}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+{% endblock %}
+
+{% block pagination %}
+    {% if results %}
+        <div class="pagination-info">
+            Page {{ results.number }} of {{ results.paginator.num_pages }}
+        </div>
+        <div class="pagination">
+            {% if results.has_previous %}
+                <a href="?page=1&query={{ query }}"><<</a>
+                <span class="separator"></span>
+                <a href="?page={{ results.previous_page_number }}&query={{ query }}">Previous</a>
+            {% endif %}
+
+            {% if results.has_next %}
+                <a href="?page={{ results.next_page_number }}&query={{ query }}">Next</a>
+                <span class="separator"></span>
+                <a href="?page={{ results.paginator.num_pages }}&query={{ query }}">>></a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

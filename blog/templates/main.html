@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DB's Blog</title>
+        {% load static %}
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{% static 'styles.css' %}"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+        />
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="{% static 'main.js' %}"></script>
+    </head>
+    <body>
+        <a href="{% url 'home' %}" class="banner">
+            <h1 class="overlay-text">DB's Blog</h1>
+            <h2 class="overlay-text">Just another local test</h2>
+        </a>
+        <div class="content">
+            <div class="main-body">{% block main-body %} {% endblock %}</div>
+            <div class="navigation-panel">
+                <form method="get" action="{% url 'search' %}">
+                    {{ form }}
+                    <button type="submit">Search</button>
+                </form>
+                {% block post-tree %} {% include 'post_tree.html' %} {% endblock %}
+            </div>
+        </div>
+        {% block pagination %} {% endblock %}
+        <footer>
+            <p>© 2024 DB's Blog</p>
+        </footer>
+    </body>
+</html>

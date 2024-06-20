@@ -1,0 +1,111 @@
+
+body {
+    font-family: "Roboto";
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 50px;
+}
+
+.banner {
+    background-image: url('bannertest.png');
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    height: 500px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.overlay-text {
+    z-index: 2;
+    margin: 0;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2 {
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 600px;
+    margin-right: 600px;
+}
+
+.main-body {
+    width: 900px;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+.pub-date {
+    color: #c7c7c7;
+}
+
+.post-body {
+    padding-top: 10px;
+}
+
+.navigation-panel {
+    width: 350px;
+}
+
+.year.revealed .date {
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li::before {
+    content: '\25B6'; /* Unicode character ▶ */
+    margin-right: 5px;
+}
+
+li.revealed::before {
+    content: '\25BC'; /* Unicode character ▼ */
+}
+
+.no-bullet li::before,
+.no-bullet li.revealed::before {
+    content: none; /* or any other styling you want to exclude */
+}
+
+.pagination,
+.pagination-info {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.pagination {
+    text-decoration: underline;
+}
+
+.separator {
+    padding: 5px;
+}
+
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+    color: black;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}

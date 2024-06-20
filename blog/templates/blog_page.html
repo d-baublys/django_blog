@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block main-body %}
+    {% for post in page_posts %}
+        <h3><a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.title|upper }}</a></h3>
+        <p class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</p>
+        <p class="post-body">{{ post.content }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}
+
+{% block pagination %}
+    <div class="pagination-info">
+        Page {{ page_posts.number }} of {{ page_posts.paginator.num_pages }}
+    </div>
+    <div class="pagination">
+        {% if page_posts.has_previous %}
+            <a href="?page=1"><<</a>
+            <span class="separator"></span>
+            <a href="?page={{ page_posts.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% if page_posts.has_next %}
+            <a href="?page={{ page_posts.next_page_number }}">Next</a>
+            <span class="separator"></span>
+            <a href="?page={{ page_posts.paginator.num_pages }}">>></a>
+        {% endif %}
+    </div>
+{% endblock %}

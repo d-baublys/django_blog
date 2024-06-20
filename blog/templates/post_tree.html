@@ -1,0 +1,23 @@
+{% block post-tree %}
+    <ul class="years">
+        {% regroup posts by pub_date.year as year_list %}
+        {% for year in year_list %}
+            <li class="year revealed">
+                {{ year.grouper }}
+                <ul class ="months">
+                    {% regroup year.list by pub_date.month as month_list %}
+                    {% for month in month_list %}
+                        <li class="month">
+                            {{ month.grouper }}
+                            <ul class="date no-bullet">
+                                {% for post in month.list %}
+                                    <li><a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.pub_date|date:"d F" }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
