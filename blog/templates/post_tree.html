@@ -1,6 +1,6 @@
 {% block post-tree %}
     <ul class="years">
-        {% regroup posts by pub_date.year as year_list %}
+        {% regroup tree_posts by pub_date.year as year_list %}
         {% for year in year_list %}
             <li class="year revealed">
                 {{ year.grouper }}
