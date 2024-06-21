@@ -6,8 +6,7 @@ class Post(models.Model):
     post_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     content = models.TextField()
-    pub_date = models.DateTimeField("Date published", auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    pub_date = models.DateTimeField("Date published")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     objects = models.Manager()
 
