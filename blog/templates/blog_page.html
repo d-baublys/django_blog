@@ -2,7 +2,9 @@
 
 {% block main-body %}
     {% for post in paginated_posts %}
-        <h3><a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.title|upper }}</a></h3>
+        <h3>
+            <a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.title|upper }}</a>
+        </h3>
         <p class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</p>
         <p class="post-body">{{ post.content }}</p>
         <hr>
@@ -10,10 +12,10 @@
 {% endblock %}
 
 {% block pagination %}
-    <div class="pagination-info">
+    <div class="pages-info">
         Page {{ paginated_posts.number }} of {{ paginated_posts.paginator.num_pages }}
     </div>
-    <div class="pagination">
+    <div class="pages-nav">
         {% if paginated_posts.has_previous %}
             <a href="?page=1"><<</a>
             <span class="separator"></span>

@@ -17,10 +17,10 @@
 
 {% block pagination %}
     {% if results %}
-        <div class="pagination-info">
+        <div class="pages-info">
             Page {{ results.number }} of {{ results.paginator.num_pages }}
         </div>
-        <div class="pagination">
+        <div class="pages-nav">
             {% if results.has_previous %}
                 <a href="?page=1&query={{ query }}"><<</a>
                 <span class="separator"></span>

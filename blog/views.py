@@ -51,7 +51,7 @@ class SearchView(View):
         if form.is_valid():
             query = form.cleaned_data.get("query")
             results = (Post.objects.filter(title__icontains=query) 
-                    | Post.objects.filter(content__icontains=query)).order_by("-pub_date")
+                       | Post.objects.filter(content__icontains=query)).order_by("-pub_date")
             paginator = Paginator(results, 5)
             page = request.GET.get("page")
 

@@ -11,7 +11,11 @@
                             {{ month.grouper }}
                             <ul class="date no-bullet">
                                 {% for post in month.list %}
-                                    <li><a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.pub_date|date:"d F" }}</a></li>
+                                    <li>
+                                        <a href="{% url 'post_detail_view' post_id=post.post_id %}">
+                                            {{ post.pub_date|date:"d F" }}
+                                        </a>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </li>

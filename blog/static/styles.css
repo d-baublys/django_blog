@@ -73,26 +73,26 @@ ul {
 }
 
 li::before {
-    content: '\25B6'; /* Unicode character ▶ */
+    content: '\25B6';
     margin-right: 5px;
 }
 
 li.revealed::before {
-    content: '\25BC'; /* Unicode character ▼ */
+    content: '\25BC';
 }
 
 .no-bullet li::before,
 .no-bullet li.revealed::before {
-    content: none; /* or any other styling you want to exclude */
+    content: none;
 }
 
-.pagination,
-.pagination-info {
+.pages-nav,
+.pages-info {
     text-align: center;
     padding-bottom: 20px;
 }
 
-.pagination {
+.pages-nav {
     text-decoration: underline;
 }
 
