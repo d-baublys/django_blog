@@ -2,7 +2,7 @@
 
 {% block main-body %}
     <div class="main-body">
-        <h3>{{ post.title|upper }}</h3>
+        <p class="post-title">{{ post.title|upper }}</p>
         <p class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</p>
         <p class="post-body">{{ post.content }}</p>
         <hr>

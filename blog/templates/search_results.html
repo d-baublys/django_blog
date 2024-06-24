@@ -1,11 +1,13 @@
 {% extends 'main.html' %}
 
 {% block main-body %}
-    <h2>Search Results for "{{ query }}"</h2>
+    <p class="result-title">Search Results for "{{ query }}"</p>
 
     {% if results %}
         {% for result in results %}
-            <h3>{{ result.title|upper }}</h3>
+            <p class="post-title">
+                <a href="{% url 'post_detail_view' post_id=result.post_id %}">{{ result.title|upper }}</a>
+            </p>
             <p class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</p>
             <p class="post-body">{{ result.content }}</p>
             <hr>
@@ -17,10 +19,10 @@
 
 {% block pagination %}
     {% if results %}
-        <div class="pages-info">
+        <p class="pages-info">
             Page {{ results.number }} of {{ results.paginator.num_pages }}
-        </div>
-        <div class="pages-nav">
+        </p>
+        <p class="pages-nav">
             {% if results.has_previous %}
                 <a href="?page=1&query={{ query }}"><<</a>
                 <span class="separator"></span>
@@ -32,6 +34,6 @@
                 <span class="separator"></span>
                 <a href="?page={{ results.paginator.num_pages }}&query={{ query }}">>></a>
             {% endif %}
-        </div>
+        </p>
     {% endif %}
 {% endblock %}

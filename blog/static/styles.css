@@ -1,9 +1,18 @@
 
 body {
-    font-family: "Roboto";
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     margin: 0;
-    padding-top: 0;
-    padding-bottom: 50px;
+    padding: 0;
+    font-family: "Roboto";
+}
+
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .banner {
@@ -11,9 +20,8 @@ body {
     background-size: cover;
     background-position: top;
     background-attachment: fixed;
-    height: 500px;
+    height: 300px;
     width: 100%;
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,8 +30,8 @@ body {
 }
 
 .overlay-text {
-    z-index: 2;
-    margin: 0;
+    z-index: 1;
+    margin: 0px;
 }
 
 h1 {
@@ -48,20 +56,31 @@ h2 {
     width: 900px;
 }
 
-h3 {
+.post-title {
     font-size: 25px;
+    font-weight: bold;
 }
 
 .pub-date {
-    color: #c7c7c7;
+    color: #acacac;
 }
 
 .post-body {
     padding-top: 10px;
 }
 
+.result-title {
+    font-size: 30px;
+    font-weight: bold
+}
+
 .navigation-panel {
     width: 350px;
+    margin-top: 20px;
+}
+
+.post-tree {
+    margin-top: 30px;
 }
 
 .year.revealed .date {
@@ -86,14 +105,16 @@ li.revealed::before {
     content: none;
 }
 
-.pages-nav,
-.pages-info {
-    text-align: center;
-    padding-bottom: 20px;
+.pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100px;
 }
 
 .pages-nav {
     text-decoration: underline;
+    margin-top: 0px;
 }
 
 .separator {
@@ -108,4 +129,7 @@ a:hover, a:visited, a:link, a:active {
 footer {
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: #f1f1f1;
 }
