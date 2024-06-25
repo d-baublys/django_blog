@@ -13,7 +13,7 @@
     <body>
         <a href="{% url 'home' %}" class="banner">
             <h1 class="overlay-text">DB's Blog</h1>
-            <h2 class="overlay-text">Just another local test</h2>
+            <h2 class="overlay-text">Just another portfolio blog</h2>
         </a>
         <div class="wrapper">
             <div class="content">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="navigation-panel">
                     <form method="get" action="{% url 'search' %}">
-                        {{ form }}
+                        {{ form.as_p }}
                         <button type="submit">Search</button>
                     </form>
                     <div class="post-tree">
@@ -33,10 +33,10 @@
                     </div>
                 </div>
             </div>
-            <div class="pagination">
-                {% block pagination %}
-                {% endblock %}
-            </div>
+        </div>
+        <div class="pagination">
+            {% block pagination %}
+            {% endblock %}
         </div>
         <footer>
             <p>© 2024 DB's Blog</p>
