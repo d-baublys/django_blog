@@ -10,3 +10,17 @@ $(document).ready(function () {
         event.stopPropagation();
     });
 });
+
+
+const header = document.querySelector(".b-header");
+const banner = document.querySelector(".banner");
+const bannerScroll = banner.clientHeight - header.clientHeight;
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > bannerScroll) {
+        header.classList.add("sticky");
+    } else {
+        header.classList.remove("sticky");
+    }
+});
+

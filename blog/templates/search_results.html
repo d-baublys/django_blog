@@ -5,10 +5,10 @@
 
     {% if results %}
         {% for result in results %}
-            <p class="post-title">
+            <h2 class="post-title">
                 <a href="{% url 'post_detail_view' post_id=result.post_id %}">{{ result.title|upper }}</a>
-            </p>
-            <p class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</p>
+            </h2>
+            <h3 class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</h3>
             <p class="post-body">{{ result.content }}</p>
             <hr>
         {% endfor %}

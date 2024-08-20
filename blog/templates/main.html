@@ -8,12 +8,14 @@
         <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script src="{% static 'main.js' %}"></script>
     </head>
     <body>
+        <header class="b-header">
+
+        </header>
         <a href="{% url 'home' %}" class="banner">
             <h1 class="overlay-text">DB's Blog</h1>
-            <h2 class="overlay-text">Just another portfolio blog</h2>
+            <p class="overlay-text">Just another portfolio blog</p>
         </a>
         <div class="wrapper">
             <div class="content">
@@ -22,10 +24,14 @@
                     {% endblock %}
                 </div>
                 <div class="navigation-panel">
+                    <h2>Search Blog</h2>
+                    <hr>
                     <form method="get" action="{% url 'search' %}">
-                        {{ form.as_p }}
+                        {{ form }}
                         <button type="submit">Search</button>
                     </form>
+                    <h2>Post Archive</h2>
+                    <hr>
                     <div class="post-tree">
                         {% block post-tree %}
                             {% include 'post_tree.html' %}
@@ -38,8 +44,7 @@
             {% block pagination %}
             {% endblock %}
         </div>
-        <footer>
-            <p>© 2024 DB's Blog</p>
-        </footer>
+        <footer></footer>
+        <script src="{% static 'main.js' %}"></script>
     </body>
 </html>
