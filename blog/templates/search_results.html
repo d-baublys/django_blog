@@ -19,21 +19,18 @@
 
 {% block pagination %}
     {% if results %}
-        <p class="pages-info">
-            Page {{ results.number }} of {{ results.paginator.num_pages }}
-        </p>
-        <p class="pages-nav">
-            {% if results.has_previous %}
-                <a href="?page=1&query={{ query }}"><<</a>
-                <span class="separator"></span>
-                <a href="?page={{ results.previous_page_number }}&query={{ query }}">Previous</a>
-            {% endif %}
-
-            {% if results.has_next %}
-                <a href="?page={{ results.next_page_number }}&query={{ query }}">Next</a>
-                <span class="separator"></span>
-                <a href="?page={{ results.paginator.num_pages }}&query={{ query }}">>></a>
-            {% endif %}
-        </p>
+        <div class="pages-nav">
+            <div class="previous-posts">
+                {% if results.has_previous %}
+                    <a href="?page={{ results.previous_page_number }}&query={{ query }}">Previous Posts</a>
+                {% endif %}
+            </div>
+            <p>Page {{ results.number }} of {{ results.paginator.num_pages }}</p>
+            <div class="next-posts">
+                {% if results.has_next %}
+                    <a href="?page={{ results.next_page_number }}&query={{ query }}">Next Posts</a>
+                {% endif %}
+            </div>
+        </div>
     {% endif %}
 {% endblock %}

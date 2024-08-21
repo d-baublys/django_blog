@@ -1,7 +1,3 @@
-html {
-    font-family: "Roboto", sans-serif;
-}
-
 body {
     display: flex;
     flex-direction: column;
@@ -46,7 +42,7 @@ p.overlay-text {
     justify-content: center;
     height: 5rem;
     width: 100%;
-    background-color: #cf2f2f;
+    background-color: #acacac;
     z-index: 2;
     transform: translateY(-100%);
     transition: 0.3s transform cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -66,7 +62,7 @@ h1 {
 }
 
 h2 {
-    margin-bottom: 0;
+    margin: 1rem 0;
     font-size: 1.25rem;
 }
 
@@ -86,12 +82,11 @@ h2 {
 
 h2.post-title {
     font-size: 1.75rem;
-    margin: 1rem 0;
 }
 
 h3.pub-date {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: normal;
     color: #acacac;
 }
 
@@ -162,7 +157,13 @@ form button {
     padding: 0;
 }
 
-.navigation-panel hr {
+hr {
+    border-color: #acacac;
+}
+
+.navigation-panel h2 {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #acacac;
     width: 100%;
 }
 
@@ -192,18 +193,34 @@ li.revealed::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 2rem;
-    margin-top: 0;
-    margin-bottom: 2rem;
+    height: 4rem;
+    border-top: 1px solid #acacac;
 }
 
 .pages-nav {
-    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
     margin-top: 0;
+    width: 30rem;
+    height: 100%;
 }
 
-.separator {
-    padding: 0.5rem;
+.previous-posts, .next-posts {
+    font-weight: bold;
+}
+
+.previous-posts {
+    display: flex;
+    justify-content: flex-start;
+    width: 33%;
+}
+
+.next-posts {
+    display: flex;
+    justify-content: flex-end;
+    width: 33%;
 }
 
 a:hover, a:visited, a:link, a:active {
@@ -215,7 +232,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 8vh;
+    height: 8rem;
     background-color: #f1f1f1;
 }
 
@@ -235,4 +252,5 @@ footer {
 
 *, *::before, *::after {
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }

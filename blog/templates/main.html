@@ -28,13 +28,11 @@
                 </div>
                 <div class="navigation-panel">
                     <h2>Search Blog</h2>
-                    <hr>
                     <form method="get" action="{% url 'search' %}">
                         {{ form }}
                         <button type="submit">Search</button>
                     </form>
                     <h2>Post Archive</h2>
-                    <hr>
                     <div class="post-tree">
                         {% block post-tree %}
                             {% include 'post_tree.html' %}
