@@ -1,5 +1,4 @@
 html {
-    box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 }
 
@@ -14,6 +13,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-top: 3rem;
 }
 
 .banner {
@@ -41,12 +41,17 @@ p.overlay-text {
 
 .b-header {
     position: fixed;
+    display: flex;
     height: 5rem;
     width: 100%;
     background-color: #cf2f2f;
     z-index: 2;
     transform: translateY(-100%);
     transition: 0.3s transform cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.b-header form {
+    width: 22rem;
 }
 
 .sticky {
@@ -63,17 +68,17 @@ h2 {
 }
 
 .content {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    margin: 2rem auto;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content: space-between;
     width: 80%;
     max-width: 1200px;
     background-color: #1833e2;
 }
 
 .main-body {
-    width: 100%;
-    min-width: 800px;
+    width: 63%;
 }
 
 h2.post-title {
@@ -99,32 +104,48 @@ h3.pub-date {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
-    margin-left: 1rem;
+    width: 30%;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 2rem;
 }
 
 .navigation-panel form {
-    display: flex;
-    flex-direction: row;
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
-.navigation-panel form input, .navigation-panel form button {
+form input, form button {
     margin: 0;
 }
 
-.navigation-panel form input {
-    width: 12rem;
-    height: 2rem;
+form > div {
+    width: 100%;
+}
+
+form input {
+    width: 100%;
+    height: 100%;
     border-radius: 0;
     border-color: #000;
 }
 
-.navigation-panel form button {
-    width: 5rem;
-    height: 100%;
+form input:focus {
+    border-radius: 0;
+}
+
+form button {
+    width: 8rem;
     border: 0;
+    padding: 0;
+    height: 100%;
     color: #fff;
     background-color: #000;
+    text-transform: uppercase;
 }
 
 .post-tree {
@@ -205,4 +226,8 @@ footer {
     .post-tree {
         padding-left: 0;
     }
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }

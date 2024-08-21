@@ -11,7 +11,10 @@
     </head>
     <body>
         <header class="b-header">
-
+            <form method="get" action="{% url 'search' %}">
+                {{ form }}
+                <button type="submit">Search</button>
+            </form>
         </header>
         <a href="{% url 'home' %}" class="banner">
             <h1 class="overlay-text">DB's Blog</h1>
