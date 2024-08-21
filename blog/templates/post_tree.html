@@ -8,7 +8,7 @@
                     {% regroup year.list by pub_date.month as month_list %}
                     {% for month in month_list %}
                         <li class="month">
-                            {{ month.grouper }}
+                            {{ month.list.0.pub_date|date:"F" }}
                             <ul class="date no-bullet">
                                 {% for post in month.list %}
                                     <li>
