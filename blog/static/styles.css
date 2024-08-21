@@ -1,15 +1,11 @@
 body {
     display: flex;
     flex-direction: column;
-    min-height: 150vh;
     margin: 0;
 }
 
 .wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding-top: 3rem;
+    padding-top: 2.5rem;
 }
 
 .banner {
@@ -73,7 +69,10 @@ h2 {
     justify-content: space-between;
     width: 80%;
     max-width: 1200px;
-    background-color: #1833e2;
+    min-height: 1000px;
+    padding: 1rem;
+    border: 1px solid #acacac;
+    border-radius: 2rem;
 }
 
 .main-body {
@@ -131,11 +130,12 @@ form input {
     width: 100%;
     height: 100%;
     border-radius: 0;
-    border-color: #000;
+    border-color: #acacac;
 }
 
 form input:focus {
-    border-radius: 0;
+    outline: 0;
+    border-color: #000; 
 }
 
 form button {
@@ -144,8 +144,13 @@ form button {
     padding: 0;
     height: 100%;
     color: #fff;
-    background-color: #000;
+    background-color: #292929;
     text-transform: uppercase;
+    cursor: pointer;
+}
+
+form button:hover, form button:focus {
+    background-color: #3e3e3e;
 }
 
 .post-tree {
@@ -158,7 +163,9 @@ form button {
 }
 
 hr {
+    border-top: none;
     border-color: #acacac;
+    margin: 0;
 }
 
 .navigation-panel h2 {
@@ -173,6 +180,12 @@ hr {
 
 ul {
     list-style-type: none;
+    margin: 0;
+}
+
+li {
+    margin: 0.275rem 0;
+    cursor: pointer;
 }
 
 li::before {
@@ -193,7 +206,7 @@ li.revealed::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 4rem;
+    height: 5rem;
     border-top: 1px solid #acacac;
 }
 
@@ -232,7 +245,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 8rem;
+    height: 5rem;
     background-color: #f1f1f1;
 }
 

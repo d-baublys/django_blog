@@ -28,7 +28,7 @@
                 </div>
                 <div class="navigation-panel">
                     <h2>Search Blog</h2>
-                    <form method="get" action="{% url 'search' %}">
+                    <form novalidate method="get" action="{% url 'search' %}">
                         {{ form }}
                         <button type="submit">Search</button>
                     </form>
