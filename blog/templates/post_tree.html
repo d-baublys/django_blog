@@ -2,7 +2,7 @@
     <ul class="years">
         {% regroup tree_posts by pub_date.year as year_list %}
         {% for year in year_list %}
-            <li class="year revealed">
+            <li class="year reveal">
                 {{ year.grouper }}
                 <ul class ="months">
                     {% regroup year.list by pub_date.month as month_list %}

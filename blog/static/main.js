@@ -2,7 +2,7 @@
 $(document).ready(function () {
     $('.year, .month').click(function (event) {
         event.stopPropagation();
-        $(this).toggleClass('revealed');
+        $(this).toggleClass('reveal');
         $(this).children('ul').toggle();
     });
 
