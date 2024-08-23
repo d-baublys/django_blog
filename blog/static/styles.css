@@ -10,9 +10,10 @@ html {
 
 body {
     margin: 0;
+    min-width: 20rem;
 }
 
-a:hover, a:visited, a:link, a:active {
+a {
     text-decoration: none;
     color: #000;
 }
@@ -52,13 +53,14 @@ hr {
     z-index: 0;
 }
 
-.overlay {
+.overlay-text {
     margin: 0;
     z-index: 1;
+    line-height: 1.66;
 }
 
-p.overlay {
-    font-size: 2rem;
+.overlay-text.lower {
+    font-size: 1.5rem;
 }
 
 .b-header {
@@ -94,9 +96,9 @@ p.overlay {
     margin: 0 auto;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%;
-    max-width: 1200px;
-    min-height: 1000px;
+    width: 100%;
+    max-width: 75rem;
+    min-height: 60rem;
     padding: 1rem;
     border: 1px solid #acacac;
     border-radius: 2rem;
@@ -187,18 +189,10 @@ form button:hover, form button:focus {
     margin: 0;
 }
 
-.years {
-    padding: 0;
-}
-
 .navigation-panel h2 {
     padding: 0.5rem 0;
     border-bottom: 1px solid #acacac;
     width: 100%;
-}
-
-.year.reveal .date {
-    display: none;
 }
 
 ul {
@@ -216,12 +210,19 @@ li::before {
     margin-right: 0.5rem;
 }
 
-li.reveal::before {
+.years {
+    padding: 0;
+}
+
+.year.reveal::before, .month.reveal::before {
     content: '\25BC';
 }
 
-.no-bullet li::before,
-.no-bullet li.reveal::before {
+.year.reveal .dates {
+    display: none;
+}
+
+.dates li::before {
     content: none;
 }
 
@@ -231,7 +232,6 @@ li.reveal::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 5rem;
     border-top: 1px solid #acacac;
 }
 
@@ -267,6 +267,35 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 5rem;
     background-color: #f1f1f1;
+}
+
+footer, .pagination {
+    height: 5rem;
+    width: 100%;
+}
+
+@media screen and (min-width: 30rem) {
+    .overlay-text.lower {
+        font-size: 2rem;
+        line-height: 1;
+    }
+
+    .content {
+        width: 90%;
+    }
+    
+    .pages-nav {
+        width: 20rem;
+    }
+}
+
+@media screen and (min-width: 37.5rem) {
+    .content {
+        width: 80%;
+    }
+
+    .pages-nav {
+        width: 37.5rem;
+    }
 }

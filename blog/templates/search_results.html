@@ -20,17 +20,17 @@
 {% block pagination %}
     {% if results %}
         <div class="pages-nav">
-            <div class="previous-posts">
+            <span class="previous-posts">
                 {% if results.has_previous %}
                     <a href="?page={{ results.previous_page_number }}&query={{ query }}">Previous Posts</a>
                 {% endif %}
-            </div>
-            <p>Page {{ results.number }} of {{ results.paginator.num_pages }}</p>
-            <div class="next-posts">
+            </span>
+            <span>Page {{ results.number }} of {{ results.paginator.num_pages }}</span>
+            <span class="next-posts">
                 {% if results.has_next %}
                     <a href="?page={{ results.next_page_number }}&query={{ query }}">Next Posts</a>
                 {% endif %}
-            </div>
+            </span>
         </div>
     {% endif %}
 {% endblock %}

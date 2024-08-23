@@ -9,7 +9,7 @@
                     {% for month in month_list %}
                         <li class="month">
                             {{ month.list.0.pub_date|date:"F" }}
-                            <ul class="date no-bullet">
+                            <ul class="dates">
                                 {% for post in month.list %}
                                     <li>
                                         <a href="{% url 'post_detail_view' post_id=post.post_id %}">
