@@ -25,7 +25,7 @@
                     <a href="?page={{ results.previous_page_number }}&query={{ query }}">Previous Posts</a>
                 {% endif %}
             </span>
-            <span>Page {{ results.number }} of {{ results.paginator.num_pages }}</span>
+            <span class="page-count">Page {{ results.number }} of {{ results.paginator.num_pages }}</span>
             <span class="next-posts">
                 {% if results.has_next %}
                     <a href="?page={{ results.next_page_number }}&query={{ query }}">Next Posts</a>

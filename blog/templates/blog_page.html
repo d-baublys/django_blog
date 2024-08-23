@@ -18,7 +18,7 @@
                 <a href="?page={{ paginated_posts.previous_page_number }}">Previous Posts</a>
             {% endif %}
         </span>
-        <span>Page {{ paginated_posts.number }} of {{ paginated_posts.paginator.num_pages }}</span>
+        <span class="page-count">Page {{ paginated_posts.number }} of {{ paginated_posts.paginator.num_pages }}</span>
         <span class="next-posts">
             {% if paginated_posts.has_next %}
                 <a href="?page={{ paginated_posts.next_page_number }}">Next Posts</a>

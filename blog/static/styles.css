@@ -107,7 +107,7 @@ hr {
 /* || Main Body */
 
 .main-body {
-    width: 63%;
+    width: 100%;
 }
 
 .post-title {
@@ -133,7 +133,7 @@ hr {
 /* || Nav Panel */
 
 .navigation-panel {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     width: 30%;
@@ -232,16 +232,25 @@ li::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 10rem;
     border-top: 1px solid #acacac;
 }
 
 .pages-nav {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 0;
-    width: 30rem;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.previous-posts, .next-posts, .page-count {
+    display: flex;
+    align-items: center;
+    text-wrap: nowrap;
     height: 100%;
 }
 
@@ -250,15 +259,15 @@ li::before {
 }
 
 .previous-posts {
-    display: flex;
     justify-content: flex-start;
-    width: 33%;
+}
+
+.page-count {
+    justify-content: center;
 }
 
 .next-posts {
-    display: flex;
     justify-content: flex-end;
-    width: 33%;
 }
 
 /* || Footer */
@@ -267,11 +276,11 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 5rem;
     background-color: #f1f1f1;
 }
 
 footer, .pagination {
-    height: 5rem;
     width: 100%;
 }
 
@@ -281,21 +290,48 @@ footer, .pagination {
         line-height: 1;
     }
 
-    .content {
-        width: 90%;
-    }
-    
     .pages-nav {
-        width: 20rem;
+        flex-direction: row;
+        align-items: center;
+        width: 28rem;
     }
+
+    .previous-posts, .page-count, .next-posts {
+        width: 100%;
+    }
+
+    .pagination {
+        height: 5rem;
+    }
+
 }
 
 @media screen and (min-width: 37.5rem) {
     .content {
-        width: 80%;
+        width: 90%;
+    }
+}
+
+@media screen and (min-width: 48rem) {
+    .content {
+        width: 85%;
+    }
+
+    .main-body {
+        width: 63%;
+    }
+
+    .navigation-panel {
+        display: flex;
     }
 
     .pages-nav {
-        width: 37.5rem;
+        width: 30rem;
+    }
+}
+
+@media screen and (min-width: 64rem) {
+    .content {
+        width: 80%;
     }
 }
