@@ -12,15 +12,21 @@ $(document).ready(function () {
 });
 
 
-const header = document.querySelector(".b-header");
+const menuButton = document.querySelector(".menu-button");
 const banner = document.querySelector(".banner");
-const bannerScroll = banner.clientHeight - header.clientHeight;
+const bannerScroll = banner.clientHeight - (menuButton.clientHeight * 1.33);
 
 window.addEventListener("scroll", () => {
     if (window.scrollY > bannerScroll) {
-        header.classList.add("sticky");
+        menuButton.classList.add("sticky");
     } else {
-        header.classList.remove("sticky");
+        menuButton.classList.remove("sticky");
     }
 });
 
+const headerMenu = document.querySelector(".header-menu");
+
+menuButton.addEventListener("click", () => {
+    headerMenu.classList.toggle("active");
+    menuButton.classList.toggle("active");
+})

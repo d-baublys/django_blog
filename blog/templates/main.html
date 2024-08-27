@@ -10,22 +10,36 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     </head>
     <body>
-        <header class="b-header">
-            <form method="get" action="{% url 'search' %}">
-                {{ form }}
-                <button type="submit">Search</button>
-            </form>
+        <nav class="nav-header">
+            <menu class="header-menu">
+                <h2>Search Blog</h2>
+                <form novalidate method="get" action="{% url 'search' %}">
+                    {{ form }}
+                    <button type="submit">Search</button>
+                </form>
+                <h2>Post Archive</h2>
+                <div class="post-tree">
+                    {% include 'post_tree.html' %}
+                </div>
+            </menu>
+            <div class="menu-button">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </nav>
+        <header>
+            <a href="{% url 'home' %}" class="banner">
+                <h1 class="overlay-text upper">DB's Blog</h1>
+                <p class="overlay-text lower">Just another portfolio blog</p>
+            </a>
         </header>
-        <a href="{% url 'home' %}" class="banner">
-            <h1 class="overlay-text upper">DB's Blog</h1>
-            <p class="overlay-text lower">Just another portfolio blog</p>
-        </a>
         <div class="wrapper">
             <div class="content">
-                <div class="main-body">
+                <main class="main-body">
                     {% block main-body %}
                     {% endblock %}
-                </div>
+                </main>
                 <aside class="navigation-panel">
                     <h2>Search Blog</h2>
                     <form novalidate method="get" action="{% url 'search' %}">
@@ -34,9 +48,7 @@
                     </form>
                     <h2>Post Archive</h2>
                     <div class="post-tree">
-                        {% block post-tree %}
-                            {% include 'post_tree.html' %}
-                        {% endblock %}
+                        {% include 'post_tree.html' %}
                     </div>
                 </aside>
             </div>
@@ -47,5 +59,16 @@
         </div>
         <footer></footer>
         <script src="{% static 'main.js' %}"></script>
+        <script>
+            $(document).ready(function () {
+                const postTree = $('.post-tree');
+                const originalContent = postTree.html();
+                const numberOfCopies = 15;
+
+                for (let i = 0; i < numberOfCopies; i++) {
+                    postTree.append(originalContent);
+                }
+            }) 
+        </script>
     </body>
 </html>
