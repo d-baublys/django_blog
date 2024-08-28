@@ -22,11 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const menuButton = document.querySelector(".menu-button");
 const headerMenu = document.querySelector(".header-menu");
+const banner = document.querySelector(".banner");
+const bannerScroll = banner.clientHeight - (menuButton.clientHeight * 1.33);
 
 window.addEventListener("scroll", () => {
-    const banner = document.querySelector(".banner");
-    const bannerScroll = banner.clientHeight - (menuButton.clientHeight * 1.33);
-
     if (window.scrollY > bannerScroll) {
         menuButton.classList.add("sticky");
     } else {
