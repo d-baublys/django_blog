@@ -262,12 +262,12 @@ li::before {
     padding: 0;
 }
 
-.year.reveal::before, .month.reveal::before {
-    content: '\25BC';
+.year li {
+    margin-bottom: 0.5rem;
 }
 
-.year.reveal .dates {
-    display: none;
+.year.reveal::before, .month.reveal::before {
+    content: '\25BC';
 }
 
 .dates li::before {

@@ -1,38 +1,22 @@
-
-// $(document).ready(function () {
-//     $('.year, .month').click(function (event) {
-//         event.stopPropagation();
-//         $(this).toggleClass('reveal');
-//         $(this).children('ul').toggle();
-//     });
-
-//     $('.date').click(function (event) {
-//         event.stopPropagation();
-//     });
-// });
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const yearMonthElements = document.querySelectorAll(".year, .month");
+    const datesElements = document.querySelectorAll(".dates");
 
     yearMonthElements.forEach(function (element) {
+        element.style.display = "block";
         element.addEventListener("click", function (event) {
             event.stopPropagation();
             element.classList.toggle("reveal");
-
-            const datesUl = element.querySelector(".dates");
-            if (datesUl) {
-                datesUl.style.display = datesUl.style.display === "none" ? "block" : "none";
+            const childUl = element.querySelector("ul");
+            
+            if (childUl) {
+                childUl.style.display = childUl.style.display === "none" ? "block" : "none";
             }
         })
     });
 
-    const dateElements = document.querySelectorAll(".date");
-
-    dateElements.forEach(function (element) {
-        element.addEventListener("click", function (event) {
-            event.stopPropagation();
-        })
+    datesElements.forEach(function (element) {
+        element.style.display = "none";
     })
 });
 
