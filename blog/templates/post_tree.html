@@ -12,7 +12,7 @@
                             {% for post in month.list %}
                                 <li>
                                     <a href="{% url 'post_detail_view' post_id=post.post_id %}">
-                                        {{ post.pub_date|date:"d F" }}
+                                        {{ post.title }}
                                     </a>
                                 </li>
                             {% endfor %}
