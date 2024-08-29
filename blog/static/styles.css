@@ -88,6 +88,7 @@ hr {
     border: 1px solid #acacac;
     opacity: 0;
     overflow-y: auto;
+    z-index: 3;
     transition: opacity 0.1s cubic-bezier(0, 0.47, 0.745, 0.715), right 0.2s cubic-bezier(1, 0, 1, 1);
 }
 
