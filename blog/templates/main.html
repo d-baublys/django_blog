@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="nav-header">
-            <menu class="header-menu" tabindex="0">
+            <div class="header-menu">
                 <h2>Search Blog</h2>
                 <form novalidate method="get" action="{% url 'search' %}">
                     {{ form }}
@@ -20,7 +20,7 @@
                 <div class="post-tree">
                     {% include 'post_tree.html' %}
                 </div>
-            </menu>
+            </div>
             <div class="menu-button">
                 <div></div>
                 <div></div>
@@ -33,7 +33,7 @@
                 <p class="overlay-text lower">Just another portfolio blog</p>
             </a>
         </header>
-        <div class="wrapper">
+        <div class="main-wrapper">
             <div class="content">
                 <main class="main-body">
                     {% block main-body %}

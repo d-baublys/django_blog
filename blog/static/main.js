@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const postTree = document.querySelector(".post-tree");
-    const originalContent = postTree.innerHTML;
+    const postTrees = document.querySelectorAll(".post-tree");
     const numberOfCopies = 15;
 
-    for (let i = 0; i < numberOfCopies; i++) {
+    postTrees.forEach(function (postTree) {
+        const originalContent = postTree.innerHTML;
+        for (let i = 0; i < numberOfCopies; i++) {
         postTree.innerHTML += originalContent;
-    }
+        }
+    });
 
     const yearMonthElements = document.querySelectorAll(".year, .month");
     const datesElements = document.querySelectorAll(".dates");
