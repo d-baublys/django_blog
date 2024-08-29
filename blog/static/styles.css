@@ -186,7 +186,7 @@ hr {
 
 /* || Nav Panel */
 
-.navigation-panel {
+.sidebar {
     display: none;
     flex-direction: column;
     align-items: flex-start;
@@ -239,7 +239,7 @@ form button:hover, form button:focus {
     margin: 0;
 }
 
-.navigation-panel h2 {
+.sidebar h2 {
     padding: 0.5rem 0;
     border-bottom: 1px solid #acacac;
     width: 100%;
@@ -276,9 +276,9 @@ li::before {
     content: none;
 }
 
-/* || Pagination */
+/* || Page Navigation */
 
-.pagination {
+.nav-cover {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -286,7 +286,7 @@ li::before {
     border-top: 1px solid #acacac;
 }
 
-.pages-nav {
+.nav-links {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -297,18 +297,13 @@ li::before {
     padding: 1rem;
 }
 
-.previous-posts, .next-posts, .page-count {
+.previous-set, .next-set, .page-count {
     display: flex;
     align-items: center;
-    text-wrap: nowrap;
     height: 100%;
 }
 
-.previous-posts, .next-posts {
-    font-weight: bold;
-}
-
-.previous-posts {
+.previous-set {
     justify-content: flex-start;
 }
 
@@ -316,8 +311,25 @@ li::before {
     justify-content: center;
 }
 
-.next-posts {
+.next-set {
     justify-content: flex-end;
+}
+
+.post-dir {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.title-preview {
+    max-width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.link-next, .link-previous {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 /* || Footer */
@@ -330,7 +342,7 @@ footer {
     background-color: #f1f1f1;
 }
 
-footer, .pagination {
+footer, .nav-cover {
     width: 100%;
 }
 
@@ -340,18 +352,22 @@ footer, .pagination {
         line-height: 1;
     }
 
-    .pages-nav {
+    .nav-links {
         flex-direction: row;
         align-items: center;
         width: 28rem;
     }
 
-    .previous-posts, .page-count, .next-posts {
+    .previous-set, .page-count, .next-set {
         width: 100%;
     }
 
-    .pagination {
+    .nav-cover {
         height: 5rem;
+    }
+
+    .link-next {
+        align-items: flex-end;
     }
 
 }
@@ -375,11 +391,11 @@ footer, .pagination {
         width: 63%;
     }
 
-    .navigation-panel {
+    .sidebar {
         display: flex;
     }
 
-    .pages-nav {
+    .nav-links {
         width: 30rem;
     }
 

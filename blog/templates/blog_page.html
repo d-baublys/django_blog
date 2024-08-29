@@ -12,16 +12,20 @@
 {% endblock %}
 
 {% block pagination %}
-    <div class="pages-nav">
-        <span class="previous-posts">
+    <div class="nav-links">
+        <span class="previous-set">
             {% if paginated_posts.has_previous %}
-                <a href="?page={{ paginated_posts.previous_page_number }}">Previous Posts</a>
+                <a href="?page={{ paginated_posts.previous_page_number }}" class="link-previous">
+                    <div class="post-dir">Previous Posts</div>
+                </a>
             {% endif %}
         </span>
         <span class="page-count">Page {{ paginated_posts.number }} of {{ paginated_posts.paginator.num_pages }}</span>
-        <span class="next-posts">
+        <span class="next-set">
             {% if paginated_posts.has_next %}
-                <a href="?page={{ paginated_posts.next_page_number }}">Next Posts</a>
+                <a href="?page={{ paginated_posts.next_page_number }}" class="link-next">
+                    <div class="post-dir">Next Posts</div>
+                </a>
             {% endif %}
         </span>
     </div>

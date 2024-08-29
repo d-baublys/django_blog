@@ -38,6 +38,13 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        post = self.get_object()
+
+        previous_post = Post.objects.filter(pub_date__lt=post.pub_date).order_by("-pub_date").first()
+        next_post = Post.objects.filter(pub_date__gt=post.pub_date).order_by("pub_date").first()
+
+        context["previous_post"] = previous_post
+        context["next_post"] = next_post
         context["form"] = SearchForm()
         context["tree_posts"] = Post.objects.all().order_by("-pub_date")
 

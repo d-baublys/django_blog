@@ -6,3 +6,24 @@
     <p class="post-body">{{ post.content }}</p>
     <hr>
 {% endblock %}
+
+{% block pagination %}
+    <div class="nav-links">
+        <span class="previous-set">
+            {% if previous_post %}
+                <a href="{% url 'post_detail_view' post_id=previous_post.post_id %}" class="link-previous">
+                    <div class="post-dir">Previous Post</div>
+                    <div class="title-preview">{{ previous_post.title }}</div>
+                </a>
+            {% endif %}
+        </span>
+        <span class="next-set">
+            {% if next_post %}
+                <a href="{% url 'post_detail_view' post_id=next_post.post_id %}" class="link-next">
+                    <div class="post-dir">Next Post</div>
+                    <div class="title-preview">{{ next_post.title }}</div>
+                </a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

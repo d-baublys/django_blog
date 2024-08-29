@@ -39,7 +39,7 @@
                     {% block main-body %}
                     {% endblock %}
                 </main>
-                <aside class="navigation-panel">
+                <aside class="sidebar">
                     <h2>Search Blog</h2>
                     <form novalidate method="get" action="{% url 'search' %}">
                         {{ form }}
@@ -52,7 +52,7 @@
                 </aside>
             </div>
         </div>
-        <div class="pagination">
+        <div class="nav-cover">
             {% block pagination %}
             {% endblock %}
         </div>
