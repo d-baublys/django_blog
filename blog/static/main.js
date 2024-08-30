@@ -38,7 +38,7 @@ const bannerScroll = banner.clientHeight - (menuButton.clientHeight * 1.33);
 window.addEventListener("scroll", () => {
     if (window.scrollY > bannerScroll) {
         menuButton.classList.add("sticky");
-    } else {
+    } else if (!menuButton.classList.contains("active")) {
         menuButton.classList.remove("sticky");
     }
 });
@@ -46,11 +46,13 @@ window.addEventListener("scroll", () => {
 menuButton.addEventListener("click", () => {
     menuButton.classList.toggle("active");
     headerMenu.classList.toggle("active");
+    menuButton.classList.toggle("sticky");
 });
 
 document.addEventListener("click", function (event) {
     if (!menuButton.contains(event.target) && !headerMenu.contains(event.target)) {
         menuButton.classList.remove("active");
         headerMenu.classList.remove("active");
+        menuButton.classList.remove("sticky");
     }
 });
