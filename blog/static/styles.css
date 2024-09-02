@@ -67,7 +67,7 @@ hr {
     position: fixed;
     display: flex;
     align-items: center;
-    height: 4rem;
+    height: 5rem;
     width: 100%;
     z-index: 2;
 }
@@ -82,13 +82,19 @@ hr {
     width: 25%;
     height: 100vh;
     min-width: 20rem;
-    padding: 2rem;
+    padding: 3rem 2rem;
     background-color: #fff;
     border: 1px solid #acacac;
     opacity: 0;
     overflow-y: auto;
     z-index: 0;
     transition: opacity 0.1s cubic-bezier(0, 0.47, 0.745, 0.715), right 0.2s cubic-bezier(1, 0, 1, 1);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.header.menu::-webkit-scrollbar {
+    display: none;
 }
 
 .menu-button {
@@ -98,7 +104,7 @@ hr {
     justify-content: space-between;
     top: auto;
     right: 2rem;
-    width: 3rem;
+    width: 4rem;
     height: 66%;
     margin: 0;
     padding: 0.5rem;
@@ -110,7 +116,7 @@ hr {
 
 .menu-button div {
     width: 100%;
-    height: 0.33rem;
+    height: 0.5rem;
     background-color: #fff;
 }
 
@@ -129,11 +135,11 @@ hr {
 }
 
 .menu-button.active div:nth-child(1) {
-    transform: translate(0, 200%) rotate(45deg);
+    transform: translate(0, 170%) rotate(45deg);
 }
 
 .menu-button.active div:nth-child(2) {
-    transform: translate(0, 100%) rotate(-45deg);
+    transform: translate(0, 70%) rotate(-45deg);
 }
 
 .menu-button.active div:nth-child(3) {
@@ -266,7 +272,7 @@ li::before {
 }
 
 .year li {
-    margin-bottom: 0.5rem;
+    margin: 0.5rem auto;
 }
 
 .year.reveal::before, .month.reveal::before {
@@ -383,7 +389,7 @@ footer, .nav-cover {
 
 @media screen and (min-width: 48rem) {
     .nav-header {
-        height: 5rem;
+        display: none;
     }
 
     .content {
@@ -402,30 +408,8 @@ footer, .nav-cover {
         width: 30rem;
     }
 
-    .header-menu {
-        padding: 3rem 2rem;
-    }
-
-    .menu-button {
-        margin: 0;
-        width: 4rem;
-        right: 3rem;
-    }
-
-    .menu-button div {
-        height: 0.5rem;
-    }
-
     footer {
         height: 5rem;
-    }
-
-    .menu-button.active div:nth-child(1) {
-        transform: translate(0, 175%) rotate(45deg);
-    }
-    
-    .menu-button.active div:nth-child(2) {
-        transform: translate(0, 75%) rotate(-45deg);
     }
 }
 
