@@ -2,14 +2,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearMonthLis = document.querySelectorAll(".year, .month");
     const yearLis = document.querySelectorAll(".year");
     let mostRecentYear = 0;
-
+    let mostRecentYearLi = null;
+    let mostRecentMonth = 0;
+    let mostRecentMonthLi = null;
+    
     yearLis.forEach((yearLi) => {
         const year = parseInt(yearLi.textContent.trim(), 10);
 
         if (year > mostRecentYear) {
             mostRecentYear = year;
+            mostRecentYearLi = yearLi;
         }
     });
+
+    if (mostRecentYearLi) {
+        const monthLis = mostRecentYearLi.querySelectorAll("li.month");
+
+        monthLis.forEach((monthLi) => {
+            const month = parseInt(monthLi.dataset.month, 10);
+
+            if (month > mostRecentMonth) {
+                mostRecentMonth = month;
+                mostRecentMonthLi = monthLi;
+            }
+        })
+    };
+
+    if (mostRecentMonthLi) {
+        mostRecentYearLi.classList.add("reveal");
+        const monthsUl = mostRecentYearLi.querySelector("ul.months");
+        
+        monthsUl.style.display = "block";
+    
+        mostRecentMonthLi.classList.add("reveal");
+        const datesUl = mostRecentMonthLi.querySelector("ul.dates");
+        datesUl.style.display = "block";
+    };
 
     yearLis.forEach((yearLi) => {
         const year = parseInt(yearLi.textContent.trim(), 10);
@@ -22,9 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const monthLis = monthsUl.querySelectorAll('li.month');
             
             monthLis.forEach((monthLi) => {
-                monthLi.classList.add("reveal");
-                const datesUl = monthLi.querySelector("ul.dates");
-                datesUl.style.display = "block";
+                const month = parseInt(monthLi.dataset.month, 10);
+                if (month === mostRecentMonth) {
+                    monthLi.classList.add("reveal");
+                    const datesUl = monthLi.querySelector("ul.dates");
+                    datesUl.style.display = "block";
+                }
             })
         }
     });

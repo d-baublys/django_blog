@@ -6,7 +6,7 @@
             <ul class ="months" style="display: none;">
                 {% regroup year.list by pub_date.month as month_list %}
                 {% for month in month_list %}
-                    <li class="month">
+                    <li class="month" data-month="{{ month.list.0.pub_date|date:'m' }}">
                         {{ month.list.0.pub_date|date:"F" }}
                         <ul class="dates" style="display: none;">
                             {% for post in month.list %}
