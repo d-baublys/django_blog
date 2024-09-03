@@ -1,19 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const postTrees = document.querySelectorAll(".post-tree");
-    const numberOfCopies = 15;
+    const yearMonthElements = document.querySelectorAll(".year, .month");
+    const yearElements = document.querySelectorAll(".year");
+    const currentYear = new Date().getFullYear();
+    const currentMonth = new Date().getMonth();
 
-    postTrees.forEach(function (postTree) {
-        const originalContent = postTree.innerHTML;
-        for (let i = 0; i < numberOfCopies; i++) {
-        postTree.innerHTML += originalContent;
+    yearElements.forEach(function(yearElement) {
+        const year = parseInt(yearElement.textContent.trim(), 10);
+
+        if (year === currentYear) {
+            yearElement.classList.add("reveal");
+            const monthsUl = yearElement.querySelector("ul.months");
+            
+            monthsUl.style.display = "block";
+            const monthLis = monthsUl.querySelectorAll('li.month');
+            
+            monthLis.forEach(function(monthLi) {
+                monthLi.classList.add("reveal");
+                const datesUl = monthLi.querySelector("ul.dates");
+                datesUl.style.display = "block";
+            })
         }
     });
 
-    const yearMonthElements = document.querySelectorAll(".year, .month");
-    const datesElements = document.querySelectorAll(".dates");
-
     yearMonthElements.forEach(function (element) {
-        element.style.display = "block";
         element.addEventListener("click", function (event) {
             event.stopPropagation();
             element.classList.toggle("reveal");
@@ -24,10 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
     });
-
-    datesElements.forEach(function (element) {
-        element.style.display = "none";
-    })
 });
 
 const menuButton = document.querySelector(".menu-button");
