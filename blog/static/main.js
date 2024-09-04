@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function stickyMenuButton() {
         if (window.scrollY > bannerScroll) {
             menuButton.classList.add("sticky");
-        } else if (!menuButton.classList.contains("active")) {
+        } else {
             menuButton.classList.remove("sticky");
         }
     }
@@ -60,14 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
     function toggleMenuButton() {
         menuButton.classList.toggle("active");
         headerMenu.classList.toggle("active");
-        menuButton.classList.toggle("sticky");
     }
 
     function menuOffClick(event) {
         if (!menuButton.contains(event.target) && !headerMenu.contains(event.target)) {
             menuButton.classList.remove("active");
             headerMenu.classList.remove("active");
-            menuButton.classList.remove("sticky");
         }
     }
 

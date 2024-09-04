@@ -120,7 +120,7 @@ hr {
     background-color: #fff;
 }
 
-.menu-button.sticky {
+.menu-button.sticky, .menu-button.active {
     background-color: #acacac;
 }
 
