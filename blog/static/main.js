@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearMonthLis = document.querySelectorAll(".year, .month");
     const menuButton = document.querySelector(".menu-button");
     const headerMenu = document.querySelector(".header-menu");
-    const banner = document.querySelector(".banner");
-    const bannerScroll = banner.clientHeight - (menuButton.clientHeight * 1.33);
 
     function revealMostRecentMonth(postTree) {
         const yearLis = postTree.querySelectorAll(".year");
@@ -50,7 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function stickyMenuButton() {
-        if (window.scrollY > bannerScroll) {
+        let bannerBottom = document.querySelector(".banner").getBoundingClientRect().bottom;
+        let menuButtonBottom = menuButton.getBoundingClientRect().bottom;
+
+        if (menuButtonBottom >= bannerBottom) {
             menuButton.classList.add("sticky");
         } else {
             menuButton.classList.remove("sticky");
