@@ -4,35 +4,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuButton = document.querySelector(".menu-button");
     const headerMenu = document.querySelector(".header-menu");
 
+    function findMostRecentLi(lis, getValue) {
+        return Array.from(lis).reduce((mostRecentLi, currentLi) => {
+            const currentValue = getValue(currentLi);
+            return !mostRecentLi || currentValue > getValue(mostRecentLi) ? currentLi : mostRecentLi;
+        }, null);
+    }
+
+    function getYear(li) {
+        return parseInt(li.textContent.trim(), 10);
+    }
+
+    function getMonth(li) {
+        return parseInt(li.dataset.month, 10);
+    }
+
+    function revealElement(li, className) {
+        li.classList.add(className);
+        const childUl = li.querySelector("ul");
+        if (childUl) {
+            childUl.style.display = "block";
+        }
+    }
+
     function revealMostRecentMonth(postTree) {
         const yearLis = postTree.querySelectorAll(".year");
-        let mostRecentYearLi = null;
-        let mostRecentMonthLi = null;
+        const mostRecentYearLi = findMostRecentLi(yearLis, getYear);
 
-        yearLis.forEach(yearLi => {
-            const year = parseInt(yearLi.textContent.trim(), 10);
-            if (!mostRecentYearLi || year > parseInt(mostRecentYearLi.textContent.trim(), 10)) {
-                mostRecentYearLi = yearLi;
-            }
-        });
-    
         if (mostRecentYearLi) {
-            const monthLis = mostRecentYearLi.querySelectorAll("li.month");
-            monthLis.forEach(monthLi => {
-                const month = parseInt(monthLi.dataset.month, 10);
-                if (!mostRecentMonthLi || month > parseInt(mostRecentMonthLi.textContent.trim(), 10)) {
-                    mostRecentMonthLi = monthLi;
-                }
-            });
-    
+            const monthLis = mostRecentYearLi.querySelectorAll(".month");
+            const mostRecentMonthLi = findMostRecentLi(monthLis, getMonth);
+
             if (mostRecentMonthLi) {
-                mostRecentYearLi.classList.add("reveal");
-                const monthsUl = mostRecentYearLi.querySelector("ul.months");
-                monthsUl.style.display = "block";
-            
-                mostRecentMonthLi.classList.add("reveal");
-                const datesUl = mostRecentMonthLi.querySelector("ul.dates");
-                datesUl.style.display = "block";
+                revealElement(mostRecentYearLi, "reveal");
+                revealElement(mostRecentMonthLi, "reveal");
             }
         }
     }
