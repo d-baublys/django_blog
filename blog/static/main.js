@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getYear(li) {
-        return parseInt(li.textContent.trim(), 10);
+        return parseInt(li.dataset.year, 10);
     }
 
     function getMonth(li) {
