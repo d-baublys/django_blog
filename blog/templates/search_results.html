@@ -6,12 +6,16 @@
     {% if results %}
         {% for result in results %}
             <article class="blog-post">
-                <h2 class="post-title">
-                    <a href="{% url 'post_detail_view' post_id=result.post_id %}">{{ result.title|upper }}</a>
-                </h2>
-                <h3 class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</h3>
+                <header>
+                    <h1 class="post-title">
+                        <a href="{% url 'post_detail_view' post_id=result.post_id %}">{{ result.title|upper }}</a>
+                    </h1>
+                    <h2 class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</h2>
+                </header>
                 <p class="post-body">{{ result.content }}</p>
-                <hr>
+                <footer>
+                    <hr>
+                </footer>
             </article>
         {% endfor %}
     {% else %}
@@ -21,7 +25,7 @@
 
 {% block pagination %}
     {% if results %}
-        <div class="nav-links">
+        <section class="nav-pages">
             <span class="previous-set">
                 {% if results.has_previous %}
                     <a href="?page={{ results.previous_page_number }}&query={{ query }}" class="link-previous">
@@ -37,6 +41,6 @@
                     </a>
                 {% endif %}
             </span>
-        </div>
+        </section>
     {% endif %}
 {% endblock %}

@@ -3,18 +3,22 @@
 {% block main-body %}
     {% for post in paginated_posts %}
         <article class="blog-post">
-            <h2 class="post-title">
-                <a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.title|upper }}</a>
-            </h2>
-            <h3 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h3>
+            <header>
+                <h1 class="post-title">
+                    <a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.title|upper }}</a>
+                </h1>
+                <h2 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h2>
+            </header>
             <p class="post-body">{{ post.content }}</p>
-            <hr>
+            <footer>
+                <hr>
+            </footer>
         </article>
     {% endfor %}
 {% endblock %}
 
 {% block pagination %}
-    <div class="nav-links">
+    <section class="nav-pages">
         <span class="previous-set">
             {% if paginated_posts.has_previous %}
                 <a href="?page={{ paginated_posts.previous_page_number }}" class="link-previous">
@@ -30,5 +34,5 @@
                 </a>
             {% endif %}
         </span>
-    </div>
+    </section>
 {% endblock %}

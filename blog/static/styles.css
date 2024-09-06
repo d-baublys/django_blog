@@ -307,7 +307,7 @@ footer {
     border-top: 1px solid #acacac;
 }
 
-.nav-links {
+.nav-pages {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -361,7 +361,11 @@ footer {
         line-height: 1;
     }
 
-    .nav-links {
+    .footer-upper {
+        height: 5rem;
+    }
+
+    .nav-pages {
         flex-direction: row;
         align-items: center;
         width: 28rem;
@@ -369,10 +373,6 @@ footer {
 
     .previous-set, .page-count, .next-set {
         width: 100%;
-    }
-
-    .footer-upper {
-        height: 5rem;
     }
 
     .link-next {
@@ -404,12 +404,12 @@ footer {
         display: flex;
     }
 
-    .nav-links {
-        width: 30rem;
+    .footer-lower {
+        height: 5rem;
     }
 
-    footer {
-        height: 5rem;
+    .nav-pages {
+        width: 30rem;
     }
 }
 

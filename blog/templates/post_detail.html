@@ -2,15 +2,19 @@
 
 {% block main-body %}
     <article class="blog-post">
-        <h2 class="post-title">{{ post.title|upper }}</h2>
-        <h3 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h3>
+        <header>
+            <h1 class="post-title">{{ post.title|upper }}</h1>
+            <h2 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h2>
+        </header>
         <p class="post-body">{{ post.content }}</p>
-        <hr>
+        <footer>
+            <hr>
+        </footer>
     </article>
 {% endblock %}
 
 {% block pagination %}
-    <div class="nav-links">
+    <section class="nav-pages">
         <span class="previous-set">
             {% if previous_post %}
                 <a href="{% url 'post_detail_view' post_id=previous_post.post_id %}" class="link-previous">
@@ -27,5 +31,5 @@
                 </a>
             {% endif %}
         </span>
-    </div>
+    </section>
 {% endblock %}
