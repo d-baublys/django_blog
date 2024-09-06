@@ -12,21 +12,13 @@
         <header>
             <nav class="nav-header">
                 <div class="header-menu">
-                    <h2>Search Blog</h2>
-                    <form novalidate method="get" action="{% url 'search' %}">
-                        {{ form }}
-                        <button type="submit">Search</button>
-                    </form>
-                    <h2>Post Archive</h2>
-                    <div class="post-tree">
-                        {% include 'post_tree.html' %}
-                    </div>
+                    {% include 'side_content.html' %}
                 </div>
-                <div class="menu-button">
+                <button class="menu-button">
                     <div></div>
                     <div></div>
                     <div></div>
-                </div>
+                </button>
             </nav>
             <a href="{% url 'home' %}" class="banner">
                 <h1 class="overlay-text upper">DB's Blog</h1>
@@ -40,15 +32,7 @@
                     {% endblock %}
                 </main>
                 <aside class="sidebar">
-                    <h2>Search Blog</h2>
-                    <form novalidate method="get" action="{% url 'search' %}">
-                        {{ form }}
-                        <button type="submit">Search</button>
-                    </form>
-                    <h2>Post Archive</h2>
-                    <div class="post-tree">
-                        {% include 'post_tree.html' %}
-                    </div>
+                    {% include 'side_content.html' %}
                 </aside>
             </div>
         </div>
