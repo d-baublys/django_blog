@@ -1,10 +1,12 @@
 {% extends 'main.html' %}
 
 {% block main-body %}
-    <h2 class="post-title">{{ post.title|upper }}</h2>
-    <h3 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h3>
-    <p class="post-body">{{ post.content }}</p>
-    <hr>
+    <article class="blog-post">
+        <h2 class="post-title">{{ post.title|upper }}</h2>
+        <h3 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h3>
+        <p class="post-body">{{ post.content }}</p>
+        <hr>
+    </article>
 {% endblock %}
 
 {% block pagination %}

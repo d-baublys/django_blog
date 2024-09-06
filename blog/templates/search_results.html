@@ -5,12 +5,14 @@
 
     {% if results %}
         {% for result in results %}
-            <h2 class="post-title">
-                <a href="{% url 'post_detail_view' post_id=result.post_id %}">{{ result.title|upper }}</a>
-            </h2>
-            <h3 class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</h3>
-            <p class="post-body">{{ result.content }}</p>
-            <hr>
+            <article class="blog-post">
+                <h2 class="post-title">
+                    <a href="{% url 'post_detail_view' post_id=result.post_id %}">{{ result.title|upper }}</a>
+                </h2>
+                <h3 class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</h3>
+                <p class="post-body">{{ result.content }}</p>
+                <hr>
+            </article>
         {% endfor %}
     {% else %}
         <p>No results found.</p>

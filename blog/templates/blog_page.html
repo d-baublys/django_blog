@@ -2,12 +2,14 @@
 
 {% block main-body %}
     {% for post in paginated_posts %}
-        <h2 class="post-title">
-            <a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.title|upper }}</a>
-        </h2>
-        <h3 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h3>
-        <p class="post-body">{{ post.content }}</p>
-        <hr>
+        <article class="blog-post">
+            <h2 class="post-title">
+                <a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.title|upper }}</a>
+            </h2>
+            <h3 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h3>
+            <p class="post-body">{{ post.content }}</p>
+            <hr>
+        </article>
     {% endfor %}
 {% endblock %}
 

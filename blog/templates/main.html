@@ -9,25 +9,25 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
     </head>
     <body>
-        <div class="nav-header">
-            <nav class="header-menu">
-                <h2>Search Blog</h2>
-                <form novalidate method="get" action="{% url 'search' %}">
-                    {{ form }}
-                    <button type="submit">Search</button>
-                </form>
-                <h2>Post Archive</h2>
-                <div class="post-tree">
-                    {% include 'post_tree.html' %}
+        <header>
+            <nav class="nav-header">
+                <div class="header-menu">
+                    <h2>Search Blog</h2>
+                    <form novalidate method="get" action="{% url 'search' %}">
+                        {{ form }}
+                        <button type="submit">Search</button>
+                    </form>
+                    <h2>Post Archive</h2>
+                    <div class="post-tree">
+                        {% include 'post_tree.html' %}
+                    </div>
+                </div>
+                <div class="menu-button">
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </nav>
-            <div class="menu-button">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <header>
             <a href="{% url 'home' %}" class="banner">
                 <h1 class="overlay-text upper">DB's Blog</h1>
                 <p class="overlay-text lower">Just another portfolio blog</p>
@@ -52,11 +52,14 @@
                 </aside>
             </div>
         </div>
-        <div class="nav-cover">
-            {% block pagination %}
-            {% endblock %}
-        </div>
-        <footer></footer>
+        <footer>
+            <div class="footer-upper">
+                {% block pagination %}
+                {% endblock %}
+            </div>
+            <div class="footer-lower">
+            </div>
+        </footer>
         <script src="{% static 'main.js' %}"></script>
     </body>
 </html>
