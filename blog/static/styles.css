@@ -18,6 +18,14 @@ a {
     color: #000;
 }
 
+.post-title:hover, .post-title:focus, .dates a:hover, .dates a:focus {
+    text-decoration: underline;
+}
+
+.banner h1:hover, .banner h1:focus, .banner h1:hover ~ p, .banner h1:focus ~ p {
+    opacity: 0.7;
+}
+
 button, input, select {
     font-family: "Roboto", sans-serif;
 }
@@ -63,7 +71,7 @@ hr {
     font-size: 1.5rem;
 }
 
-.nav-header {
+.header-nav {
     position: fixed;
     display: flex;
     align-items: center;
@@ -388,7 +396,7 @@ footer {
 }
 
 @media screen and (min-width: 48rem) {
-    .nav-header {
+    .header-nav {
         display: none;
     }
 

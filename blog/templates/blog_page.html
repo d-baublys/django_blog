@@ -3,7 +3,7 @@
 {% block main-body %}
     {% for post in paginated_posts %}
         <article class="blog-post">
-            <header>
+            <header class="post-header">
                 <h1 class="post-title">
                     <a href="{% url 'post_detail_view' post_id=post.post_id %}">{{ post.title|upper }}</a>
                 </h1>
