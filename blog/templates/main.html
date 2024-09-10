@@ -11,14 +11,14 @@
     <body>
         <header class="page-header">
             <nav class="header-nav">
-                <div class="header-menu">
-                    {% include 'side_content.html' %}
-                </div>
                 <button class="menu-button">
                     <div></div>
                     <div></div>
                     <div></div>
                 </button>
+                <div class="header-menu">
+                    {% include 'side_content.html' %}
+                </div>
             </nav>
             <a href="{% url 'home' %}" class="banner-image"></a>
             <div class="banner-overlay">

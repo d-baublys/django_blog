@@ -1,4 +1,4 @@
-/* || Base Styles */
+/* || General */
 
 html {
     font-family: "Roboto", sans-serif;
@@ -14,8 +14,8 @@ body {
 }
 
 a {
-    text-decoration: none;
     color: #000;
+    text-decoration: none;
 }
 
 .title-link:hover, .title-link:focus, .dates a:hover, .dates a:focus {
@@ -52,6 +52,18 @@ hr {
     height: 20rem;
 }
 
+.banner-image {
+    display: flex;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('sky-royalty-free.png');
+    background-attachment: fixed;
+    background-position: top;
+    background-size: cover;
+}
+
 .banner-overlay, .text-link {
     display: flex;
     flex-direction: column;
@@ -59,22 +71,10 @@ hr {
     justify-content: center;
 }
 
-.banner-image {
-    position: relative;
-    background-image: url('sky-royalty-free.png');
-    background-size: cover;
-    background-position: top;
-    background-attachment: fixed;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
 .banner-overlay {
     position: absolute;
-    top: 0;
     left: 0;
+    top: 0;
     z-index: 1;
 }
 
@@ -89,61 +89,30 @@ hr {
 }
 
 .header-nav {
+    display: flex;
     position: fixed;
-    display: flex;
     align-items: center;
-    height: 5rem;
-    width: 100%;
     z-index: 2;
-}
-
-.header-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: absolute;
-    top: 0;
-    right: -500px;
-    width: 25%;
-    height: 100vh;
-    min-width: 20rem;
-    padding: 3rem 2rem;
-    background-color: #fff;
-    border: 1px solid #acacac;
-    opacity: 0;
-    overflow-y: auto;
-    z-index: 0;
-    transition: opacity 0.1s cubic-bezier(0, 0.47, 0.745, 0.715), right 0.2s cubic-bezier(1, 0, 1, 1);
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.header-menu.active {
-    right: 0;
-    opacity: 1;
-    transition: opacity 0.4s cubic-bezier(0.47, 0, 0.745, 0.715), right 0.3s cubic-bezier(0, 0, 0, 1);
-}
-
-.header.menu::-webkit-scrollbar {
-    display: none;
+    width: 100%;
+    height: 5rem;
 }
 
 .menu-button {
-    position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    top: auto;
+    position: absolute;
     right: 2rem;
+    top: auto;
+    justify-content: space-between;
+    z-index: 1;
     width: 4rem;
     height: 66%;
     margin: 0;
-    padding: 0.5rem;
     border: 1px solid #fff;
     border-radius: 0.33rem;
+    padding: 0.5rem;
     background-color: transparent;
     cursor: pointer;
-    z-index: 1;
 }
 
 .menu-button div {
@@ -172,6 +141,37 @@ hr {
     opacity: 0;
 }
 
+.header-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: -500px;
+    top: 0;
+    align-items: flex-start;
+    z-index: 0;
+    width: 25%;
+    height: 100vh;
+    min-width: 20rem;
+    border: 1px solid #acacac;
+    padding: 3rem 2rem;
+    background-color: #fff;
+    opacity: 0;
+    transition: opacity 0.1s cubic-bezier(0, 0.47, 0.745, 0.715), right 0.2s cubic-bezier(1, 0, 1, 1);
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.header-menu.active {
+    right: 0;
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(0.47, 0, 0.745, 0.715), right 0.3s cubic-bezier(0, 0, 0, 1);
+}
+
+.header.menu::-webkit-scrollbar {
+    display: none;
+}
+
 /* || Content */
 
 .main-wrapper {
@@ -180,15 +180,15 @@ hr {
 
 .content {
     display: flex;
-    margin: 0 auto;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     max-width: 75rem;
     min-height: 60rem;
-    padding: 1rem;
     border: 1px solid #acacac;
     border-radius: 2rem;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 /* || Main Body */
@@ -206,9 +206,9 @@ hr {
 }
 
 .pub-date {
+    color: #acacac;
     font-size: 1rem;
     font-weight: normal;
-    color: #acacac;
 }
 
 .post-body {
@@ -216,9 +216,9 @@ hr {
 }
 
 .result-title {
+    margin-top: 1rem;
     font-size: 2rem;
     font-weight: bold;
-    margin-top: 1rem;
 }
 
 /* || Sidebar */
@@ -250,17 +250,17 @@ form input {
 }
 
 form input:focus {
+    border-color: #000;
     outline: 0;
-    border-color: #000; 
 }
 
 form button {
     width: 8rem;
+    height: 100%;
     border: 0;
     padding: 0;
-    height: 100%;
-    color: #fff;
     background-color: #292929;
+    color: #fff;
     text-transform: uppercase;
     cursor: pointer;
 }
@@ -277,14 +277,14 @@ form button:hover, form button:focus {
 }
 
 .sidebar h2 {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #acacac;
     width: 100%;
+    border-bottom: 1px solid #acacac;
+    padding: 0.5rem 0;
 }
 
 ul {
-    list-style-type: none;
     margin: 0;
+    list-style-type: none;
 }
 
 li {
@@ -334,12 +334,12 @@ footer {
 
 .nav-pages {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    flex-direction: column;
-    margin-top: 0;
     width: 100%;
     height: 100%;
+    margin-top: 0;
     padding: 1rem;
 }
 
@@ -368,8 +368,8 @@ footer {
 
 .title-preview {
     max-width: 10rem;
-    overflow: hidden;
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .link-next, .link-previous {
