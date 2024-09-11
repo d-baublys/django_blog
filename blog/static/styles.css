@@ -48,6 +48,43 @@ li::before {
     margin-right: 0.5rem;
 }
 
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 2rem;
+    margin-bottom: 1rem;
+}
+
+form div, form input {
+    width: 100%;
+}
+
+form input {
+    height: 100%;
+    border-radius: 0;
+    border-color: #acacac;
+}
+
+form input:focus {
+    border-color: #000;
+    outline: 0;
+}
+
+form button {
+    width: 8rem;
+    border: 0;
+    padding: 0;
+    background-color: #292929;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+form button:hover, form button:focus {
+    background-color: #3e3e3e;
+}
+
 /* || Links */
 
 .title-link:hover, .title-link:focus, .dates a:hover, .dates a:focus {
@@ -96,15 +133,17 @@ li::before {
 /* Banner */
 
 .page-header, .banner-overlay {
-    width: 100%;
     height: 20rem;
+}
+
+.banner-overlay {
+    width: 100%;
 }
 
 .banner-image {
     display: flex;
     position: relative;
     z-index: 0;
-    width: 100%;
     height: 100%;
     background-image: url('sky-royalty-free.png');
     background-attachment: fixed;
@@ -238,7 +277,6 @@ li::before {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
     max-width: 75rem;
     min-height: 60rem;
     border: 1px solid #acacac;
@@ -266,10 +304,6 @@ li::before {
 }
 
 /* Main Body */
-
-.main-body {
-    width: 100%;
-}
 
 @media screen and (min-width: 48rem) {
     .main-body {
@@ -300,45 +334,6 @@ li::before {
     }
 }
 
-form {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-form, form > div {
-    width: 100%;
-    height: 2rem;
-}
-
-form input {
-    width: 100%;
-    height: 100%;
-    border-radius: 0;
-    border-color: #acacac;
-}
-
-form input:focus {
-    border-color: #000;
-    outline: 0;
-}
-
-form button {
-    width: 8rem;
-    height: 100%;
-    border: 0;
-    padding: 0;
-    background-color: #292929;
-    color: #fff;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-
-form button:hover, form button:focus {
-    background-color: #3e3e3e;
-}
-
 /* Post Tree */
 
 .post-tree {
@@ -347,7 +342,6 @@ form button:hover, form button:focus {
 }
 
 .sidebar h2 {
-    width: 100%;
     border-bottom: 1px solid #acacac;
     padding: 0.5rem 0;
 }
@@ -369,10 +363,6 @@ form button:hover, form button:focus {
 }
 
 /* Footer */
-
-footer {
-    width: 100%;
-}
 
 .footer-lower {
     height: 4rem;
