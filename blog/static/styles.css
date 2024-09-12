@@ -54,8 +54,6 @@ li::before {
 
 form {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     height: 2rem;
     margin-bottom: 1rem;
 }
