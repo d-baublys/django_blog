@@ -426,16 +426,14 @@ form button:hover, form button:focus {
     }
 }
 
-.previous-set {
-    justify-content: flex-start;
-}
-
 .page-count {
     justify-content: center;
 }
 
-.next-set {
-    justify-content: flex-end;
+@media screen and (min-width: 30rem) {
+    .next-set {
+        justify-content: flex-end;
+    }
 }
 
 .title-preview {
@@ -447,7 +445,6 @@ form button:hover, form button:focus {
 .link-next, .link-previous {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
 }
 
 @media screen and (min-width: 30rem) {
