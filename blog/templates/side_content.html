@@ -1,11 +1,11 @@
-<section>
+<section class="sbar-section">
     <h2>Search Blog</h2>
     <form novalidate method="get" action="{% url 'search' %}">
         {{ form }}
         <button type="submit">Search</button>
     </form>
 </section>
-<section>
+<section class="sbar-section">
     <h2>Post Archive</h2>
     <div class="post-tree">
         {% include 'post_tree.html' %}
