@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const childUl = li.querySelector("ul");
         if (childUl) {
             childUl.style.display = "block";
+            childUl.style.opacity = "1";
         }
     }
 
@@ -48,7 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
         li.classList.toggle("reveal");
         const childUl = li.querySelector("ul");
         if (childUl) {
-            childUl.style.display = childUl.style.display === "none" ? "block" : "none";
+            childUl.style.display = childUl.style.display === "none" ? "block" : setTimeout(() => childUl.style.display = "none", 100);
+            setTimeout(() => childUl.style.opacity = childUl.style.opacity === "0" ? "1" : "0", 0)
         }
     }
 

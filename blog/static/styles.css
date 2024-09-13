@@ -36,6 +36,7 @@ hr {
 ul {
     margin: 0;
     list-style-type: none;
+    transition: opacity 0.3s linear;
 }
 
 li {
