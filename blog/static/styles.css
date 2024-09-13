@@ -369,6 +369,14 @@ li.reveal::before {
     content: none;
 }
 
+.post-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
 /* Footer */
 
 .footer-lower {
@@ -446,6 +454,7 @@ li.reveal::before {
 .title-preview {
     max-width: 10rem;
     text-overflow: ellipsis;
+    white-space: nowrap;
     overflow: hidden;
 }
 
