@@ -10,7 +10,7 @@
     </head>
     <body>
         <header class="page-header">
-            <nav class="header-nav">
+            <div class="menu-container">
                 <button class="menu-button">
                     <div></div>
                     <div></div>
@@ -19,7 +19,7 @@
                 <div class="header-menu">
                     {% include 'side_content.html' %}
                 </div>
-            </nav>
+            </div>
             <a href="{% url 'home' %}" class="banner-image"></a>
             <div class="banner-overlay">
                 <a href="{% url 'home' %}" class="text-link">

@@ -182,7 +182,7 @@ form button:hover, form button:focus {
     }
 }
 
-.header-nav {
+.menu-container {
     display: flex;
     position: fixed;
     align-items: center;
@@ -192,7 +192,7 @@ form button:hover, form button:focus {
 }
 
 @media screen and (min-width: 48rem) {
-    .header-nav {
+    .menu-container {
         display: none;
     }
 }
