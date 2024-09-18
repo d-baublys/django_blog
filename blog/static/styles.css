@@ -194,7 +194,6 @@ form button:hover, form button:focus {
 .menu-button {
     position: absolute;
     right: 2rem;
-    top: auto;
     z-index: 1;
     width: 4rem;
     height: 66%;

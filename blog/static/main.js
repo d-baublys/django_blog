@@ -55,10 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function stickyMenuButton() {
-        let bannerBottom = document.querySelector(".banner").getBoundingClientRect().bottom;
+        let headerBottom = document.querySelector(".page-header").getBoundingClientRect().bottom;
         let menuButtonBottom = menuButton.getBoundingClientRect().bottom;
 
-        if (menuButtonBottom >= bannerBottom) {
+        if (menuButtonBottom >= headerBottom) {
             menuButton.classList.add("sticky");
         } else {
             menuButton.classList.remove("sticky");
