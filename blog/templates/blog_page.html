@@ -10,9 +10,7 @@
                 <h2 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h2>
             </header>
             <p class="post-body">{{ post.content }}</p>
-            <footer>
-                <hr>
-            </footer>
+            <footer></footer>
         </article>
     {% endfor %}
 {% endblock %}

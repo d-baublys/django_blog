@@ -27,16 +27,10 @@ h2 {
     font-size: 1.25rem;
 }
 
-hr {
-    border-top: none;
-    border-color: #acacac;
-    margin: 0;
-}
-
 ul {
     margin: 0;
     list-style-type: none;
-    transition: opacity 0.3s linear;
+    transition: opacity 0.1s cubic-bezier(0.4, 0, 1, 1);
 }
 
 li {
@@ -271,7 +265,7 @@ form button:hover, form button:focus {
 .header-menu.active {
     right: 0;
     opacity: 1;
-    transition: opacity 0.4s cubic-bezier(0.47, 0, 0.745, 0.715), right 0.3s cubic-bezier(0, 0, 0, 1);
+    transition: opacity 0.3s cubic-bezier(0.47, 0, 0.745, 0.715), right 0.3s cubic-bezier(0, 0, 0, 1);
 }
 
 .header.menu::-webkit-scrollbar {
@@ -328,6 +322,10 @@ form button:hover, form button:focus {
 
 .post-body {
     padding: 1rem 0;
+}
+
+.blog-post footer {
+    border-bottom: 1px solid #acacac;
 }
 
 /* Sidebar */

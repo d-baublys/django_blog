@@ -13,9 +13,7 @@
                     <h2 class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</h2>
                 </header>
                 <p class="post-body">{{ result.content }}</p>
-                <footer>
-                    <hr>
-                </footer>
+                <footer></footer>
             </article>
         {% endfor %}
     {% else %}
