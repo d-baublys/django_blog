@@ -1,20 +1,24 @@
 <ul class="years">
     {% regroup tree_posts by pub_date.year as year_list %}
     {% for year in year_list %}
-    <li class="year" data-year="{{ year.grouper }}">{{ year.grouper }}<ul class="months" style="display: none; opacity: 0;">
-            {% regroup year.list by pub_date.month as month_list %}
-            {% for month in month_list %}
-            <li class="month" data-month="{{ month.list.0.pub_date|date:'m' }}">{{ month.list.0.pub_date|date:"F" }}<ul
-                    class="dates" style="display: none; opacity: 0;">
-                    {% for post in month.list %}
-                    <li>
-                        <a href="{% url 'post_detail_view' post_id=post.post_id %}" class="post-clamp">{{ post.title }}</a>
+        <li class="year" data-year="{{ year.grouper }}">{{ year.grouper }}
+            <ul class="months" style="display: none; opacity: 0;">
+                {% regroup year.list by pub_date.month as month_list %}
+                {% for month in month_list %}
+                    <li class="month"
+                    data-month="{{ month.list.0.pub_date|date:'m' }}">{{ month.list.0.pub_date|date:"F" }}
+                        <ul class="dates" style="display: none; opacity: 0;">
+                            {% for post in month.list %}
+                                <li>
+                                    <a href="{% url 'post_detail_view' post_id=post.post_id %}"
+                                    class="post-clamp">{{ post.title }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </li>
-                    {% endfor %}
-                </ul>
-            </li>
-            {% endfor %}
-        </ul>
-    </li>
+                {% endfor %}
+            </ul>
+        </li>
     {% endfor %}
 </ul>

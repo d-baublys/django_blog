@@ -2,15 +2,18 @@
 
 {% block main-body %}
     <p class="result-title">Search Results for "{{ query }}"</p>
-
     {% if results %}
         {% for result in results %}
             <article class="blog-post">
                 <header class="post-header">
                     <h1 class="post-title">
-                        <a href="{% url 'post_detail_view' post_id=result.post_id %}" class="title-link">{{ result.title|upper }}</a>
+                        <a href="{% url 'post_detail_view' post_id=result.post_id %}" class="title-link">
+                            {{ result.title|upper }}
+                        </a>
                     </h1>
-                    <h2 class="pub-date">Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}</h2>
+                    <h2 class="pub-date">
+                        Posted on {{ result.pub_date|date:"d F Y" }} by {{ result.user.username }}
+                    </h2>
                 </header>
                 <p class="post-body">{{ result.content }}</p>
                 <footer></footer>
@@ -31,7 +34,9 @@
                     </a>
                 {% endif %}
             </span>
-            <span class="page-count">Page {{ results.number }} of {{ results.paginator.num_pages }}</span>
+            <span class="page-count">
+                Page {{ results.number }} of {{ results.paginator.num_pages }}
+            </span>
             <span class="next-set">
                 {% if results.has_next %}
                     <a href="?page={{ results.next_page_number }}&query={{ query }}" class="link-next">

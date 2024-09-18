@@ -5,9 +5,13 @@
         <article class="blog-post">
             <header class="post-header">
                 <h1 class="post-title">
-                    <a href="{% url 'post_detail_view' post_id=post.post_id %}" class="title-link">{{ post.title|upper }}</a>
+                    <a href="{% url 'post_detail_view' post_id=post.post_id %}" class="title-link">
+                        {{ post.title|upper }}
+                    </a>
                 </h1>
-                <h2 class="pub-date">Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}</h2>
+                <h2 class="pub-date">
+                    Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}
+                </h2>
             </header>
             <p class="post-body">{{ post.content }}</p>
             <footer></footer>
@@ -24,7 +28,9 @@
                 </a>
             {% endif %}
         </span>
-        <span class="page-count">Page {{ paginated_posts.number }} of {{ paginated_posts.paginator.num_pages }}</span>
+        <span class="page-count">
+            Page {{ paginated_posts.number }} of {{ paginated_posts.paginator.num_pages }}
+        </span>
         <span class="next-set">
             {% if paginated_posts.has_next %}
                 <a href="?page={{ paginated_posts.next_page_number }}" class="link-next">
