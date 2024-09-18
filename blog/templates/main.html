@@ -1,52 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>DB's Blog</title>
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
-    </head>
-    <body>
-        <header class="page-header">
-            <div class="menu-container">
-                <button class="menu-button">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </button>
-                <div class="header-menu">
-                    {% include 'side_content.html' %}
-                </div>
-            </div>
-            <a href="{% url 'home' %}" class="banner-image"></a>
-            <div class="banner-overlay">
-                <a href="{% url 'home' %}" class="text-link">
-                    <h1 class="overlay-text upper">DB's Blog</h1>
-                    <p class="overlay-text lower">Just another portfolio blog</p>
-                </a>
-            </div>
-        </header>
-        <div class="main-wrapper">
-            <div class="content">
-                <main class="main-body">
-                    {% block main-body %}
-                    {% endblock %}
-                </main>
-                <aside class="sidebar">
-                    {% include 'side_content.html' %}
-                </aside>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DB's Blog</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body>
+    <header class="page-header">
+        <div class="menu-container">
+            <button class="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-menu">
+                {% include 'side_content.html' %}
             </div>
         </div>
-        <footer>
-            <nav class="footer-upper">
-                {% block pagination %}
+        <a href="{% url 'home' %}" class="banner-image"></a>
+        <div class="banner-overlay">
+            <a href="{% url 'home' %}" class="text-link">
+                <h1 class="overlay-text upper">DB's Blog</h1>
+                <p class="overlay-text lower">Just another portfolio blog</p>
+            </a>
+        </div>
+    </header>
+    <div class="main-wrapper">
+        <div class="content">
+            <main class="main-body">
+                {% block main-body %}
                 {% endblock %}
-            </nav>
-            <div class="footer-lower">
-            </div>
-        </footer>
-        <script src="{% static 'main.js' %}"></script>
-    </body>
+            </main>
+            <aside class="sidebar">
+                {% include 'side_content.html' %}
+            </aside>
+        </div>
+    </div>
+    <footer>
+        <nav class="footer-upper">
+            {% block pagination %}
+            {% endblock %}
+        </nav>
+        <div class="footer-lower">
+        </div>
+    </footer>
+    <script src="{% static 'main.js' %}"></script>
+</body>
 </html>
