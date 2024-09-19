@@ -132,36 +132,32 @@ form button:hover, form button:focus {
 
 /* Banner */
 
-.page-header, .banner-overlay {
+.page-header {
     height: 20rem;
 }
 
-.banner-overlay {
-    width: 100%;
+.header-banner, .banner-image {
+    height: 100%;
 }
 
 .banner-image {
-    display: flex;
-    position: relative;
     z-index: 0;
-    height: 100%;
+    width: 100%;
     background-image: url('sky-royalty-free.png');
     background-attachment: fixed;
     background-position: top;
     background-size: cover;
 }
 
-.banner-overlay, .text-link {
+.header-banner, .text-link {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.banner-overlay {
+.text-link {
     position: absolute;
-    left: 0;
-    top: 0;
     z-index: 1;
 }
 

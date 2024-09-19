@@ -6,12 +6,12 @@
                 {% regroup year.list by pub_date.month as month_list %}
                 {% for month in month_list %}
                     <li class="month"
-                    data-month="{{ month.list.0.pub_date|date:'m' }}">{{ month.list.0.pub_date|date:"F" }}
+                        data-month="{{ month.list.0.pub_date|date:'m' }}">{{ month.list.0.pub_date|date:"F" }}
                         <ul class="dates" style="display: none; opacity: 0;">
                             {% for post in month.list %}
                                 <li>
                                     <a href="{% url 'post_detail_view' post_id=post.post_id %}"
-                                    class="post-clamp">{{ post.title }}
+                                        class="post-clamp">{{ post.title }}
                                     </a>
                                 </li>
                             {% endfor %}

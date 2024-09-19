@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
 </head>
 <body>
     <header class="page-header">
@@ -23,8 +24,8 @@
                 {% include 'side_content.html' %}
             </div>
         </div>
-        <a href="{% url 'home' %}" class="banner-image"></a>
-        <div class="banner-overlay">
+        <div class="header-banner">
+            <a href="{% url 'home' %}" class="banner-image"></a>
             <a href="{% url 'home' %}" class="text-link">
                 <h1 class="overlay-text upper">DB's Blog</h1>
                 <p class="overlay-text lower">Just another portfolio blog</p>
