@@ -9,8 +9,10 @@ html, button, input, select {
 }
 
 body {
-    margin: 0;
+    display: flex;
+    flex-direction: column;
     min-width: 20rem;
+    min-height: 100vh;
 }
 
 a {
@@ -271,6 +273,8 @@ form button:hover, form button:focus {
 /* Content */
 
 .main-wrapper {
+    display: flex;
+    flex: 1;
     padding-top: 2.5rem;
 }
 
@@ -279,7 +283,6 @@ form button:hover, form button:focus {
     flex-direction: row;
     justify-content: space-between;
     max-width: 75rem;
-    min-height: 60rem;
     border: 1px solid #acacac;
     border-radius: 2rem;
     margin: 0 auto;
