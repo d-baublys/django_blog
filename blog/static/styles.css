@@ -1,7 +1,7 @@
 /* || Global */
 
 html, button, input, select {
-    font-family: "Roboto", sans-serif;
+    font-family: "Karla", sans-serif;
 }
 
 *, *::before, *::after {
@@ -75,6 +75,7 @@ form button {
     border: 0;
     padding: 0;
     background-color: #292929;
+    font-size: 90%;
     color: #fff;
     text-transform: uppercase;
     cursor: pointer;
