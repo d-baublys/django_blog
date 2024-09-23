@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearMonthLis = document.querySelectorAll(".year, .month");
     const menuButton = document.querySelector(".menu-button");
     const headerMenu = document.querySelector(".header-menu");
+    const overlapElements = document.querySelectorAll(".menu-button, .menu-button span");
 
     function findMostRecentLi(lis, getValue) {
         return Array.from(lis).reduce((mostRecentLi, currentLi) => {
@@ -43,6 +44,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function checkOverlap(element) {
+        let headerBottom = document.querySelector(".page-header").getBoundingClientRect().bottom;
+        const elementBottom = element.getBoundingClientRect().bottom;
+        const elementHeight = element.getBoundingClientRect().height;
+
+        let overlapPixels = elementBottom - headerBottom;
+        let overlapPercent = Math.round(overlapPixels / elementHeight  * 100)
+
+        if (element.tagName === "BUTTON") {
+            if (overlapPercent <= 0) {
+                element.style.borderImageSource  = "linear-gradient(white 100%, black 0%)";
+            } else if (overlapPercent >= 100) {
+                element.style.borderImageSource  = "linear-gradient(white 0%, black 0%)";
+            } else {
+                element.style.borderImageSource  = `linear-gradient(white ${100 - overlapPercent}%, black 0%)`;
+            }
+        } else {
+            if (overlapPercent <= 0) {
+                element.style.background = "linear-gradient(white 100%, black 0%)";
+            } else if (overlapPercent >= 100) {
+                element.style.background = "linear-gradient(white 0%, black 0%)";
+            } else {
+                element.style.background = `linear-gradient(white ${100 - overlapPercent}%, black 0%)`;
+            }
+        }
+    }
+
     function toggleNode(event) {
         event.stopPropagation();
         const li = event.currentTarget;
@@ -55,14 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function stickyMenuButton() {
-        let headerBottom = document.querySelector(".page-header").getBoundingClientRect().bottom;
-        let menuButtonBottom = menuButton.getBoundingClientRect().bottom;
-
-        if (menuButtonBottom >= headerBottom) {
-            menuButton.classList.add("sticky");
-        } else {
-            menuButton.classList.remove("sticky");
-        }
+        overlapElements.forEach(element => checkOverlap(element));
     }
 
     function toggleMenuButton() {
