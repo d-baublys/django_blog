@@ -49,14 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function checkOverlap(element) {
         const overlapPercent = getOverlapMetrics(element);
         const isButton = element.tagName === "BUTTON";
-        const gradientStyle = getGradientStyle(overlapPercent);
+        const isActive = menuButton.classList.contains("active");
+        const gradientStyle = getGradientStyle(overlapPercent, isActive);
         applyGradientStyle(element, isButton, gradientStyle);
     }
 
     function getOverlapMetrics(element) {
         const headerBottom = document.querySelector(".page-header").getBoundingClientRect().bottom;
-        const elementBottom = element.getBoundingClientRect().bottom;
-        const elementHeight = element.getBoundingClientRect().height;
+        const { bottom: elementBottom, height: elementHeight } = element.getBoundingClientRect();
 
         const overlapPixels = elementBottom - headerBottom;
         const overlapPercent = Math.round((overlapPixels / elementHeight) * 100);
@@ -64,14 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return overlapPercent;
     }
 
-    function getGradientStyle(overlapPercent) {
-        if (overlapPercent <= 0) {
-            return "linear-gradient(white 100%, black 0%)";
-        } else if (overlapPercent >= 100) {
+    function getGradientStyle(overlapPercent, isActive) {
+        if (isActive || overlapPercent > 100) {
             return "linear-gradient(white 0%, black 0%)";
-        } else {
-            return `linear-gradient(white ${100 - overlapPercent}%, black 0%)`;
         }
+
+        const clampedPercent = Math.max(0, Math.min(100 - overlapPercent, 100));
+        return `linear-gradient(white ${clampedPercent}%, black 0%)`;
     }
 
     function applyGradientStyle(element, isButton, gradientStyle) {
@@ -97,8 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     ? "block"
                     : setTimeout(() => (childUl.style.display = "none"), 100);
             setTimeout(
-                () => (childUl.style.opacity = childUl.style.opacity === "0" ? "1" : "0"),
-                0
+                () => (childUl.style.opacity = childUl.style.opacity === "0" ? "1" : "0"), 0
             );
         }
     }
@@ -106,12 +104,14 @@ document.addEventListener("DOMContentLoaded", () => {
     function toggleMenuButton() {
         menuButton.classList.toggle("active");
         headerMenu.classList.toggle("active");
+        setTimeout(buttonOverlapColours, 100);
     }
 
     function menuOffClick(event) {
         if (!menuButton.contains(event.target) && !headerMenu.contains(event.target)) {
             menuButton.classList.remove("active");
             headerMenu.classList.remove("active");
+            setTimeout(buttonOverlapColours, 100);
         }
     }
 

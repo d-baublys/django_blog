@@ -18,6 +18,7 @@ body {
     flex-direction: column;
     min-width: 20rem;
     min-height: 100vh;
+    background-color: #fff;
 }
 
 a {
@@ -209,21 +210,12 @@ form button:focus {
     cursor: pointer;
 }
 
-.menu-button.active {
-    border-image-source: linear-gradient(white 0%, black 0%) !important;
-}
-
 .menu-button span {
     position: absolute;
     width: 75%;
     height: 0.5rem;
-    background-color: #fff;
     transform: translate(-50%, -50%);
     transition: 0.1s ease;
-}
-
-.active span {
-    background: linear-gradient(white 0%, black 0%) !important;
 }
 
 .menu-button span:nth-child(1) {
@@ -373,7 +365,7 @@ form button:focus {
     padding: 0 0 0 2.5rem;
 }
 
-.post-tree li li {
+.post-tree li {
     margin: 0.5rem auto;
 }
 
