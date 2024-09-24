@@ -209,6 +209,10 @@ form button:focus {
     cursor: pointer;
 }
 
+.menu-button.active {
+    border-image-source: linear-gradient(white 0%, black 0%) !important;
+}
+
 .menu-button span {
     position: absolute;
     width: 75%;
@@ -218,9 +222,8 @@ form button:focus {
     transition: 0.1s ease;
 }
 
-.menu-button.sticky,
-.menu-button.active {
-    background-color: var(--colour-mid-grey);
+.active span {
+    background: linear-gradient(white 0%, black 0%) !important;
 }
 
 .menu-button span:nth-child(1) {
