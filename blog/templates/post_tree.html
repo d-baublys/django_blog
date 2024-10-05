@@ -10,7 +10,7 @@
                         <ul class="dates" style="display: none; opacity: 0;">
                             {% for post in month.list %}
                                 <li>
-                                    <a href="{% url 'post_detail_view' post_id=post.post_id %}"
+                                    <a href="{% url 'post_detail_view' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}"
                                         class="post-clamp">{{ post.title }}
                                     </a>
                                 </li>
