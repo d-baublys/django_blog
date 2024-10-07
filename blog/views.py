@@ -7,25 +7,15 @@ from .forms import SearchForm
 class BlogPageView(ListView):
     model = Post
     template_name = "blog_page.html"
+    context_object_name = "paginated_posts"
     paginate_by = 5
     ordering = ["-pub_date"]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(self.object_list, self.paginate_by)
-        
-        page = self.request.GET.get("page")
-
-        try:
-            paginated_posts = paginator.page(page)
-        except PageNotAnInteger:
-            paginated_posts = paginator.page(1)
-        except EmptyPage:
-            paginated_posts = paginator.page(paginator.num_pages)
 
         context["form"] = SearchForm()
         context["tree_posts"] = self.object_list
-        context["paginated_posts"] = paginated_posts
 
         return context
 
