@@ -23,8 +23,14 @@ class BlogPageView(ListView):
 class PostDetailView(DetailView):
     model = Post
     template_name = "post_detail.html"
-    context_object_name = "post"
-    pk_url_kwarg = "post_id"
+
+    def get_object(self):
+        year = self.kwargs.get("year")
+        month = self.kwargs.get("month")
+        slug = self.kwargs.get("slug")
+
+        return get_object_or_404(Post, pub_date__year=year, pub_date__month=month, slug=slug)
+    
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
