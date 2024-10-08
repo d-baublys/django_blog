@@ -9,7 +9,7 @@ class BlogPageView(ListView):
     template_name = "blog_page.html"
     context_object_name = "paginated_posts"
     paginate_by = 5
-    ordering = ["-pub_date"]
+    ordering = "-pub_date"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -47,25 +47,27 @@ class PostDetailView(DetailView):
         return context
     
 
-class SearchView(View):
-    def get(self, request):
-        form = SearchForm(request.GET)
-        tree_posts = Post.objects.all().order_by("-pub_date")
+class SearchView(ListView):
+    model = Post
+    template_name = "search_results.html"
+    context_object_name = "results"
+    paginate_by = 5
+
+    def get_queryset(self):
+        form = SearchForm(self.request.GET)
         if form.is_valid():
             query = form.cleaned_data.get("query")
-            results = (Post.objects.filter(title__icontains=query) 
-                       | Post.objects.filter(content__icontains=query)).order_by("-pub_date")
-            paginator = Paginator(results, 5)
-            page = request.GET.get("page")
+            return (
+                Post.objects.filter(title__icontains=query)
+                | Post.objects.filter(content__icontains=query)
+            ).order_by("-pub_date")
+        return Post.objects.none()
 
-            try:
-                page_results = paginator.page(page)
-            except PageNotAnInteger:
-                page_results = paginator.page(1)
-            except EmptyPage:
-                page_results = paginator.page(paginator.num_pages)
-            
-            return render(request, "search_results.html",
-                        {"tree_posts": tree_posts, "form": form, "query": query, "results": page_results})
-        
-        return render(request, "search_results.html", {"tree_posts": tree_posts, "form": form})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["form"] = SearchForm(self.request.GET)
+        context["query"] = self.request.GET.get("query", "")
+        context["tree_posts"] = Post.objects.all().order_by("-pub_date")
+
+        return context
