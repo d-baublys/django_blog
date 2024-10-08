@@ -29,7 +29,7 @@
         <section class="nav-pages">
             <span class="previous-set">
                 {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}&query={{ query }}" class="link-previous">
+                    <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}" class="link-previous">
                         <div class="post-dir">Previous Posts</div>
                     </a>
                 {% endif %}
@@ -39,7 +39,7 @@
             </span>
             <span class="next-set">
                 {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}&query={{ query }}" class="link-next">
+                    <a href="?q={{ query }}&page={{ page_obj.next_page_number }}" class="link-next">
                         <div class="post-dir">Next Posts</div>
                     </a>
                 {% endif %}

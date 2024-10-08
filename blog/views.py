@@ -56,7 +56,7 @@ class SearchView(ListView):
     def get_queryset(self):
         form = SearchForm(self.request.GET)
         if form.is_valid():
-            query = form.cleaned_data.get("query")
+            query = form.cleaned_data.get("q")
             return (
                 Post.objects.filter(title__icontains=query)
                 | Post.objects.filter(content__icontains=query)
@@ -67,7 +67,7 @@ class SearchView(ListView):
         context = super().get_context_data(**kwargs)
 
         context["form"] = SearchForm(self.request.GET)
-        context["query"] = self.request.GET.get("query", "")
+        context["query"] = self.request.GET.get("q", "")
         context["tree_posts"] = Post.objects.all().order_by("-pub_date")
 
         return context
