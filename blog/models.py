@@ -4,7 +4,6 @@ from django.utils.text import slugify
 
 
 class Post(models.Model):
-    post_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     content = models.TextField()
     pub_date = models.DateTimeField("Date published")
