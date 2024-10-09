@@ -1,11 +1,11 @@
-{% extends "main.html" %}
+{% extends "blog/base.html" %}
 
 {% block main-body %}
     {% for post in paginated_posts %}
         <article class="blog-post">
             <header class="post-header">
                 <h1 class="post-title">
-                    <a href="{% url 'post_detail_view' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}" class="title-link">
+                    <a href="{% url 'post_detail' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}" class="title-link">
                         {{ post.title|upper }}
                     </a>
                 </h1>

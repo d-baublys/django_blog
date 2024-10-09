@@ -1,12 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView, DetailView, View
+from django.shortcuts import get_object_or_404
+from django.views import generic
 from .models import Post
 from .forms import SearchForm
 
-class BlogPageView(ListView):
+class BlogHomeView(generic.ListView):
     model = Post
-    template_name = "blog_page.html"
+    template_name = "blog/home.html"
     context_object_name = "paginated_posts"
     paginate_by = 5
     ordering = "-pub_date"
@@ -20,9 +19,9 @@ class BlogPageView(ListView):
         return context
 
 
-class PostDetailView(DetailView):
+class PostDetailView(generic.DetailView):
     model = Post
-    template_name = "post_detail.html"
+    template_name = "blog/detail.html"
 
     def get_object(self):
         year = self.kwargs.get("year")
@@ -47,9 +46,9 @@ class PostDetailView(DetailView):
         return context
     
 
-class SearchView(ListView):
+class SearchResultView(generic.ListView):
     model = Post
-    template_name = "search_results.html"
+    template_name = "blog/results.html"
     context_object_name = "results"
     paginate_by = 5
 

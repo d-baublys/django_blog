@@ -1,4 +1,4 @@
-{% extends "main.html" %}
+{% extends "blog/base.html" %}
 
 {% block main-body %}
     <article class="blog-post">
@@ -17,7 +17,7 @@
     <section class="nav-pages">
         <span class="previous-set">
             {% if previous_post %}
-                <a href="{% url 'post_detail_view' year=previous_post.pub_date.year month=previous_post.pub_date.month|stringformat:'02d' slug=previous_post.slug %}" class="link-previous">
+                <a href="{% url 'post_detail' year=previous_post.pub_date.year month=previous_post.pub_date.month|stringformat:'02d' slug=previous_post.slug %}" class="link-previous">
                     <div class="post-dir">Previous Post</div>
                     <div class="title-preview">{{ previous_post.title }}</div>
                 </a>
@@ -25,7 +25,7 @@
         </span>
         <span class="next-set">
             {% if next_post %}
-                <a href="{% url 'post_detail_view' year=next_post.pub_date.year month=next_post.pub_date.month|stringformat:'02d' slug=next_post.slug %}" class="link-next">
+                <a href="{% url 'post_detail' year=next_post.pub_date.year month=next_post.pub_date.month|stringformat:'02d' slug=next_post.slug %}" class="link-next">
                     <div class="post-dir">Next Post</div>
                     <div class="title-preview">{{ next_post.title }}</div>
                 </a>

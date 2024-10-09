@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DB's Blog</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'modern-normalize.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/modern-normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/styles.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
@@ -21,7 +21,7 @@
                 <span style="background: linear-gradient(white 100%, black 0%);"></span>
             </button>
             <div class="header-menu">
-                {% include "side_content.html" %}
+                {% include "blog/sidebar.html" %}
             </div>
         </div>
         <div class="header-banner">
@@ -39,7 +39,7 @@
                 {% endblock %}
             </main>
             <aside class="sidebar">
-                {% include "side_content.html" %}
+                {% include "blog/sidebar.html" %}
             </aside>
         </div>
     </div>
@@ -51,6 +51,6 @@
         <div class="footer-lower">
         </div>
     </footer>
-    <script src="{% static 'main.js' %}"></script>
+    <script src="{% static 'blog/main.js' %}"></script>
 </body>
 </html>

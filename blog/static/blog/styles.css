@@ -152,7 +152,7 @@ form button:focus {
 .banner-image {
     z-index: 0;
     width: 100%;
-    background-image: url("sky-royalty-free.png");
+    background-image: url("../blog/images/sky-royalty-free.png");
     background-attachment: fixed;
     background-position: top;
     background-size: cover;
