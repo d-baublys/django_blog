@@ -443,13 +443,18 @@ form button:focus {
     .nav-pages {
         flex-direction: row;
         align-items: center;
-        width: 28rem;
+    }
+}
+
+@media screen and (min-width: 37.5rem) {
+    .nav-pages {
+        width: 33.75rem;
     }
 }
 
 @media screen and (min-width: 48rem) {
     .nav-pages {
-        width: 30rem;
+        width: 37.5rem;
     }
 }
 

@@ -30,7 +30,7 @@
             <span class="previous-set">
                 {% if page_obj.has_previous %}
                     <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}" class="link-previous">
-                        <div class="post-dir">Previous Posts</div>
+                        <div class="post-dir">Previous Results</div>
                     </a>
                 {% endif %}
             </span>
@@ -40,7 +40,7 @@
             <span class="next-set">
                 {% if page_obj.has_next %}
                     <a href="?q={{ query }}&page={{ page_obj.next_page_number }}" class="link-next">
-                        <div class="post-dir">Next Posts</div>
+                        <div class="post-dir">Next Results</div>
                     </a>
                 {% endif %}
             </span>
