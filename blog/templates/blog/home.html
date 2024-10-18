@@ -5,7 +5,7 @@
         <article class="blog-post">
             <header class="post-header">
                 <h1 class="post-title">
-                    <a href="{% url 'post_detail' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}" class="title-link">
+                    <a href="{% url 'blog:post_detail' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}" class="title-link">
                         {{ post.title|upper }}
                     </a>
                 </h1>
