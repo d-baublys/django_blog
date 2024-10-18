@@ -326,6 +326,28 @@ form button:focus {
 
 .post-body {
     padding: 1rem 0;
+    overflow: auto;
+}
+
+.post-body img {
+    max-width: 100%;
+    height: auto !important;
+}
+
+@media screen and (max-width: 30rem) {
+    .post-body img {
+        width: 100% !important;
+    }
+}
+
+p:has(> .img-center) {
+    text-align: center;
+}
+
+@media screen and (min-width: 30rem) {
+    img.img-center {
+        width: 75% !important;
+    }
 }
 
 .blog-post footer {
