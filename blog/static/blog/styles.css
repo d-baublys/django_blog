@@ -85,10 +85,12 @@ li {
 }
 
 .title-link,
-.result-title {
+.result-title,
+.empty-state {
     margin: 1.5rem 0;
     font-size: 1.75rem;
     font-weight: bold;
+    overflow-wrap: break-word;
 }
 
 .post-dir {
@@ -327,6 +329,7 @@ form button:focus {
 .post-body {
     padding: 1rem 0;
     overflow: auto;
+    overflow-wrap: break-word;
 }
 
 .post-body img {
@@ -421,6 +424,7 @@ p:has(> .img-center) {
     -webkit-line-clamp: 2;
     line-clamp: 2;
     overflow: hidden;
+    overflow-wrap: break-word;
 }
 
 /* Footer */

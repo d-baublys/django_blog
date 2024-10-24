@@ -1,22 +1,26 @@
 {% extends "blog/base.html" %}
 
 {% block main-body %}
-    {% for post in paginated_posts %}
-        <article class="blog-post">
-            <header class="post-header">
-                <h1 class="post-title">
-                    <a href="{% url 'blog:post_detail' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}" class="title-link">
-                        {{ post.title|upper }}
-                    </a>
-                </h1>
-                <h2 class="pub-date">
-                    Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}
-                </h2>
-            </header>
-            <div class="post-body">{{ post.content|safe }}</div>
-            <footer></footer>
-        </article>
-    {% endfor %}
+    {% if paginated_posts %}
+        {% for post in paginated_posts %}
+            <article class="blog-post">
+                <header class="post-header">
+                    <h1 class="post-title">
+                        <a href="{% url 'blog:post_detail' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}" class="title-link">
+                            {{ post.title|upper }}
+                        </a>
+                    </h1>
+                    <h2 class="pub-date">
+                        Posted on {{ post.pub_date|date:"d F Y" }} by {{ post.user.username }}
+                    </h2>
+                </header>
+                <div class="post-body">{{ post.content|safe }}</div>
+                <footer></footer>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p class="empty-state">No posts available.</p>
+    {% endif %}
 {% endblock %}
 
 {% block pagination %}

@@ -1,24 +1,28 @@
-<ul class="years">
-    {% regroup tree_posts by pub_date.year as year_list %}
-    {% for year in year_list %}
-        <li class="year" data-year="{{ year.grouper }}">{{ year.grouper }}
-            <ul class="months" style="display: none; opacity: 0;">
-                {% regroup year.list by pub_date.month as month_list %}
-                {% for month in month_list %}
-                    <li class="month"
-                        data-month="{{ month.list.0.pub_date|date:'m' }}">{{ month.list.0.pub_date|date:"F" }}
-                        <ul class="dates" style="display: none; opacity: 0;">
-                            {% for post in month.list %}
-                                <li>
-                                    <a href="{% url 'blog:post_detail' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}"
-                                        class="post-clamp">{{ post.title }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endfor %}
-            </ul>
-        </li>
-    {% endfor %}
-</ul>
+{% if tree_posts %}
+    <ul class="years">
+        {% regroup tree_posts by pub_date.year as year_list %}
+        {% for year in year_list %}
+            <li class="year" data-year="{{ year.grouper }}">{{ year.grouper }}
+                <ul class="months" style="display: none; opacity: 0;">
+                    {% regroup year.list by pub_date.month as month_list %}
+                    {% for month in month_list %}
+                        <li class="month"
+                            data-month="{{ month.list.0.pub_date|date:'m' }}">{{ month.list.0.pub_date|date:"F" }}
+                            <ul class="dates" style="display: none; opacity: 0;">
+                                {% for post in month.list %}
+                                    <li>
+                                        <a href="{% url 'blog:post_detail' year=post.pub_date.year month=post.pub_date.month|stringformat:'02d' slug=post.slug %}"
+                                            class="post-clamp">{{ post.title }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No posts available.</p>    
+{% endif %}
