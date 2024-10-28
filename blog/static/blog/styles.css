@@ -73,18 +73,13 @@ li {
     }
 }
 
-.post-title {
-    margin: 1.5rem 0;
-    font-size: 1.75rem;
-}
-
 .pub-date {
     color: var(--colour-mid-grey);
     font-size: 1rem;
     font-weight: normal;
 }
 
-.title-link,
+.post-title,
 .result-title,
 .empty-state {
     margin: 1.5rem 0;

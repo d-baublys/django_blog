@@ -100,7 +100,7 @@ class HomeViewTests(TestCase):
         """
         response = self.client.get(reverse("blog:home"))
 
-        self.assertQuerySetEqual(response.context["object_list"], [])
+        self.assertQuerySetEqual(response.context["paginated_posts"], [])
         self.assertContains(response, '<p class="empty-state">No posts available.</p>')
 
     def test_post_listing(self):
@@ -111,7 +111,7 @@ class HomeViewTests(TestCase):
         post = create_post(user=self.user)
         response = self.client.get(reverse("blog:home"))
 
-        self.assertQuerySetEqual(response.context["object_list"], [post])
+        self.assertQuerySetEqual(response.context["paginated_posts"], [post])
         self.assertContains(response, post.title)
         self.assertContains(response, post.content)
 
@@ -124,7 +124,7 @@ class HomeViewTests(TestCase):
         response_content = response.content.decode()
 
         self.assertQuerySetEqual(
-            response.context_data["object_list"], [recent_post, old_post, oldest_post]
+            response.context["paginated_posts"], [recent_post, old_post, oldest_post]
         )
 
         # Compare indexes to check posts are rendered in the correct order
@@ -142,7 +142,7 @@ class HomeViewTests(TestCase):
         future_post, recent_post = create_future_and_recent_post(self.user)
         response = self.client.get(reverse("blog:home"))
 
-        self.assertQuerySetEqual(response.context["object_list"], [recent_post])
+        self.assertQuerySetEqual(response.context["paginated_posts"], [recent_post])
 
         self.assertContains(response, recent_post.title)
         self.assertContains(response, recent_post.content)
@@ -157,10 +157,8 @@ class HomeViewTests(TestCase):
         create_multiple_posts(user=self.user, post_count=self.multi_post_count)
         response = self.client.get(reverse("blog:home"))
 
-        self.assertTrue(response.context_data["is_paginated"])
-        self.assertEqual(
-            len(response.context_data["paginated_posts"]), self.paginate_by
-        )
+        self.assertTrue(response.context["is_paginated"])
+        self.assertEqual(len(response.context["paginated_posts"]), self.paginate_by)
 
     def test_pagination_page_two(self):
         """
@@ -169,9 +167,9 @@ class HomeViewTests(TestCase):
         create_multiple_posts(user=self.user, post_count=self.multi_post_count)
         response = self.client.get(reverse("blog:home") + "?page=2")
 
-        self.assertTrue(response.context_data["is_paginated"])
+        self.assertTrue(response.context["is_paginated"])
         self.assertEqual(
-            len(response.context_data["paginated_posts"]),
+            len(response.context["paginated_posts"]),
             self.multi_post_count - self.paginate_by,
         )
 
@@ -200,8 +198,8 @@ class HomeViewTests(TestCase):
         create_multiple_posts(user=self.user, post_count=self.multi_post_count)
         response = self.client.get(reverse("blog:home"))
 
-        self.assertIn("tree_posts", response.context_data)
-        self.assertTrue(len(response.context_data["tree_posts"]), self.multi_post_count)
+        self.assertIn("tree_posts", response.context)
+        self.assertTrue(len(response.context["tree_posts"]), self.multi_post_count)
 
     def test_tree_post_list_order(self):
         """
@@ -213,7 +211,7 @@ class HomeViewTests(TestCase):
         response_content = response.content.decode()
 
         self.assertQuerySetEqual(
-            response.context_data["tree_posts"], [recent_post, old_post, oldest_post]
+            response.context["tree_posts"], [recent_post, old_post, oldest_post]
         )
 
         # Compare indexes to check posts are rendered in the correct order
@@ -242,8 +240,8 @@ class HomeViewTests(TestCase):
         """
         response = self.client.get(reverse("blog:home"))
 
-        self.assertIn("form", response.context_data)
-        self.assertIsInstance(response.context_data["form"], SearchForm)
+        self.assertIn("form", response.context)
+        self.assertIsInstance(response.context["form"], SearchForm)
 
         # Search for field name in the HTML to check form is rendered
         self.assertContains(response, 'name="q"')
@@ -356,7 +354,7 @@ class PostDetailViewTests(TestCase):
             )
         )
 
-        self.assertEqual(response.context_data["previous_post"], old_post)
+        self.assertEqual(response.context["previous_post"], old_post)
 
     def test_next_post(self):
         """
@@ -374,7 +372,7 @@ class PostDetailViewTests(TestCase):
             )
         )
 
-        self.assertEqual(response.context_data["next_post"], old_post)
+        self.assertEqual(response.context["next_post"], old_post)
 
     def test_next_post_excludes_future_posts(self):
         """
@@ -392,7 +390,7 @@ class PostDetailViewTests(TestCase):
             )
         )
 
-        self.assertIsNone(response.context_data["next_post"])
+        self.assertIsNone(response.context["next_post"])
 
     def test_tree_post_list(self):
         """
@@ -407,10 +405,8 @@ class PostDetailViewTests(TestCase):
             )
         )
 
-        self.assertIn("tree_posts", response.context_data)
-        self.assertTrue(
-            len(response.context_data["tree_posts"]), self.multi_post_count + 1
-        )
+        self.assertIn("tree_posts", response.context)
+        self.assertTrue(len(response.context["tree_posts"]), self.multi_post_count + 1)
 
     def test_tree_post_list_order(self):
         """
@@ -431,7 +427,7 @@ class PostDetailViewTests(TestCase):
         response_content = response.content.decode()
 
         self.assertQuerySetEqual(
-            response.context_data["tree_posts"], [recent_post, old_post, oldest_post]
+            response.context["tree_posts"], [recent_post, old_post, oldest_post]
         )
 
         # Compare indexes to check posts are rendered in the correct order
@@ -475,8 +471,8 @@ class PostDetailViewTests(TestCase):
             )
         )
 
-        self.assertIn("form", response.context_data)
-        self.assertIsInstance(response.context_data["form"], SearchForm)
+        self.assertIn("form", response.context)
+        self.assertIsInstance(response.context["form"], SearchForm)
 
         # Search for field name in the HTML to check form is rendered
         self.assertContains(response, 'name="q"')
@@ -520,7 +516,7 @@ class SearchResultViewTests(TestCase):
         create_post(user=self.user)
         response = self.client.get(reverse("blog:search_results"), data={"q": "12345"})
 
-        self.assertQuerySetEqual(response.context["object_list"], [])
+        self.assertQuerySetEqual(response.context["results"], [])
         self.assertContains(response, "<p>No results found.</p>")
 
     def test_has_search_results(self):
@@ -531,7 +527,7 @@ class SearchResultViewTests(TestCase):
         post = create_post(user=self.user)
         response = self.client.get(reverse("blog:search_results"), data={"q": "Test"})
 
-        self.assertQuerySetEqual(response.context["object_list"], [post])
+        self.assertQuerySetEqual(response.context["results"], [post])
         self.assertContains(response, post.title)
         self.assertContains(response, post.content)
 
@@ -544,7 +540,7 @@ class SearchResultViewTests(TestCase):
             reverse("blog:search_results"), data={"q": "CONTENT"}
         )
 
-        self.assertQuerySetEqual(response.context["object_list"], [post])
+        self.assertQuerySetEqual(response.context["results"], [post])
 
     def test_search_results_order(self):
         """
@@ -555,7 +551,7 @@ class SearchResultViewTests(TestCase):
         response_content = response.content.decode()
 
         self.assertQuerySetEqual(
-            response.context_data["object_list"], [recent_post, old_post, oldest_post]
+            response.context["results"], [recent_post, old_post, oldest_post]
         )
 
         # Compare indexes to check posts are rendered in the correct order
@@ -573,7 +569,7 @@ class SearchResultViewTests(TestCase):
         future_post, recent_post = create_future_and_recent_post(self.user)
         response = self.client.get(reverse("blog:search_results"), data={"q": "This"})
 
-        self.assertQuerySetEqual(response.context["object_list"], [recent_post])
+        self.assertQuerySetEqual(response.context["results"], [recent_post])
 
         self.assertContains(response, recent_post.title)
         self.assertContains(response, recent_post.content)
@@ -589,7 +585,7 @@ class SearchResultViewTests(TestCase):
         response = self.client.get(reverse("blog:search_results"), data={"q": ""})
 
         self.assertQuerySetEqual(
-            response.context["object_list"], [recent_post, old_post, oldest_post]
+            response.context["results"], [recent_post, old_post, oldest_post]
         )
 
     def test_query_truncation(self):
@@ -602,7 +598,7 @@ class SearchResultViewTests(TestCase):
         response = self.client.get(
             reverse("blog:search_results"), data={"q": long_query}
         )
-        self.assertEqual(len(response.context_data["query"]), max_length)
+        self.assertEqual(len(response.context["query"]), max_length)
 
     def test_pagination_page_one(self):
         """
@@ -611,8 +607,8 @@ class SearchResultViewTests(TestCase):
         create_multiple_posts(user=self.user, post_count=self.multi_post_count)
         response = self.client.get(reverse("blog:search_results"), data={"q": "Test"})
 
-        self.assertTrue(response.context_data["is_paginated"])
-        self.assertEqual(len(response.context_data["results"]), self.paginate_by)
+        self.assertTrue(response.context["is_paginated"])
+        self.assertEqual(len(response.context["results"]), self.paginate_by)
 
     def test_pagination_page_two(self):
         """
@@ -623,9 +619,9 @@ class SearchResultViewTests(TestCase):
             reverse("blog:search_results"), data={"q": "Test", "page": 2}
         )
 
-        self.assertTrue(response.context_data["is_paginated"])
+        self.assertTrue(response.context["is_paginated"])
         self.assertEqual(
-            len(response.context_data["results"]),
+            len(response.context["results"]),
             self.multi_post_count - self.paginate_by,
         )
 
@@ -656,8 +652,8 @@ class SearchResultViewTests(TestCase):
         create_multiple_posts(user=self.user, post_count=self.multi_post_count)
         response = self.client.get(reverse("blog:search_results"))
 
-        self.assertIn("tree_posts", response.context_data)
-        self.assertTrue(len(response.context_data["tree_posts"]), self.multi_post_count)
+        self.assertIn("tree_posts", response.context)
+        self.assertTrue(len(response.context["tree_posts"]), self.multi_post_count)
 
     def test_tree_post_list_order(self):
         """
@@ -669,7 +665,7 @@ class SearchResultViewTests(TestCase):
         response_content = response.content.decode()
 
         self.assertQuerySetEqual(
-            response.context_data["tree_posts"], [recent_post, old_post, oldest_post]
+            response.context["tree_posts"], [recent_post, old_post, oldest_post]
         )
 
         # Compare indexes to check posts are rendered in the correct order
@@ -698,8 +694,8 @@ class SearchResultViewTests(TestCase):
         """
         response = self.client.get(reverse("blog:search_results"))
 
-        self.assertIn("form", response.context_data)
-        self.assertIsInstance(response.context_data["form"], SearchForm)
+        self.assertIn("form", response.context)
+        self.assertIsInstance(response.context["form"], SearchForm)
 
         # Search for field name in the HTML to check form is rendered
         self.assertContains(response, 'name="q"')
