@@ -102,7 +102,7 @@ class HomeViewTests(TestCase):
         response = self.client.get(reverse("blog:home"))
 
         self.assertQuerySetEqual(response.context["paginated_posts"], [])
-        self.assertContains(response, '<p class="empty-state">No posts available.</p>')
+        self.assertContains(response, '<p class="empty-listing">No posts available.</p>')
 
     def test_post_listing(self):
         """
@@ -546,7 +546,7 @@ class SearchResultViewTests(TestCase):
         response = self.client.get(reverse("blog:search_results"), data={"q": "12345"})
 
         self.assertQuerySetEqual(response.context["results"], [])
-        self.assertContains(response, "<p>No results found.</p>")
+        self.assertContains(response, '<p class="empty-results">No results found.</p>')
 
     def test_has_search_results(self):
         """

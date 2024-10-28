@@ -81,7 +81,7 @@ li {
 
 .post-title,
 .result-title,
-.empty-state {
+.empty-listing {
     margin: 1.5rem 0;
     font-size: 1.75rem;
     font-weight: bold;
@@ -149,10 +149,22 @@ form button:focus {
 .banner-image {
     z-index: 0;
     width: 100%;
-    background-image: url("../blog/images/sky-royalty-free.png");
+    background-image: url("../blog/images/sky-royalty-free-1200w.png");
     background-attachment: fixed;
     background-position: top;
     background-size: cover;
+}
+
+@media screen and (max-width: 30rem) {
+    .banner-image {
+        background-image: url("../blog/images/sky-royalty-free-480w.png");
+    }
+}
+
+@media screen and (min-width: 30rem) and (max-width: 48rem) {
+    .banner-image {
+        background-image: url("../blog/images/sky-royalty-free-768w.png");
+    }
 }
 
 .header-banner,
@@ -321,7 +333,8 @@ form button:focus {
     }
 }
 
-.blog-post {
+.blog-post,
+.empty-results {
     padding-bottom: 3rem;
 }
 
