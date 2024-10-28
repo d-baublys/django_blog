@@ -311,6 +311,10 @@ form button:focus {
 
 /* Main Body */
 
+.main-body {
+    width: 100%;
+}
+
 @media screen and (min-width: 48rem) {
     .main-body {
         width: 63%;

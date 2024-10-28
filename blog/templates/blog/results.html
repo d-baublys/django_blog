@@ -35,7 +35,7 @@
                 {% endif %}
             </span>
             <span class="page-count">
-                Page {{ page_obj.number }} of {{ paginator.num_pages }}
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
             </span>
             <span class="next-set">
                 {% if page_obj.has_next %}
