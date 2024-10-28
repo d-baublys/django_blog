@@ -19,6 +19,14 @@ class SearchFormTests(SimpleTestCase):
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data.get("q"), "")
 
+    def test_whitespace_query(self):
+        """
+        Verify whitespace-only queries are treated the same as empty queries.
+        """
+        form = SearchForm({"q": "     "})
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data.get("q"), "")
+
     def test_max_length_validation(self):
         """
         Verify form validation limits queries to max_length.

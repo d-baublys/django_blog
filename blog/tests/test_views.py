@@ -1,4 +1,5 @@
 import datetime
+import re
 
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -111,8 +112,12 @@ class HomeViewTests(TestCase):
         post = create_post(user=self.user)
         response = self.client.get(reverse("blog:home"))
 
+        # Avoid title search in the post tree
+        title_search = re.search(
+            rf'"title-link">\s*{post.title.upper()}', response.content.decode()
+        )
         self.assertQuerySetEqual(response.context["paginated_posts"], [post])
-        self.assertContains(response, post.title)
+        self.assertTrue(title_search)  # Check there is a match
         self.assertContains(response, post.content)
 
     def test_post_listing_order(self):
@@ -144,10 +149,18 @@ class HomeViewTests(TestCase):
 
         self.assertQuerySetEqual(response.context["paginated_posts"], [recent_post])
 
-        self.assertContains(response, recent_post.title)
+        # Avoid title search in the post tree
+        recent_title_search = re.search(
+            rf'"title-link">\s*{recent_post.title.upper()}', response.content.decode()
+        )
+        self.assertTrue(recent_title_search)
         self.assertContains(response, recent_post.content)
 
-        self.assertNotContains(response, future_post.title)
+        # Avoid title search in the post tree
+        future_title_search = re.search(
+            rf'"title-link">\s*{future_post.title.upper()}', response.content.decode()
+        )
+        self.assertFalse(future_title_search)
         self.assertNotContains(response, future_post.content)
 
     def test_pagination_page_one(self):
@@ -231,8 +244,16 @@ class HomeViewTests(TestCase):
 
         self.assertQuerySetEqual(response.context["tree_posts"], [recent_post])
 
-        self.assertContains(response, recent_post.title)
-        self.assertNotContains(response, future_post.title)
+        # Avoid title searches in the post listing
+        recent_search = re.search(
+            rf'"post-clamp">\s*{recent_post.title}', response.content.decode()
+        )
+        self.assertTrue(recent_search)
+
+        future_search = re.search(
+            rf'"post-clamp">\s*{future_post.title}', response.content.decode()
+        )
+        self.assertFalse(future_search)
 
     def test_search_form_integration(self):
         """
@@ -456,8 +477,16 @@ class PostDetailViewTests(TestCase):
 
         self.assertQuerySetEqual(response.context["tree_posts"], [recent_post])
 
-        self.assertContains(response, recent_post.title)
-        self.assertNotContains(response, future_post.title)
+        # Avoid title searches in the post listing
+        recent_search = re.search(
+            rf'"post-clamp">\s*{recent_post.title}', response.content.decode()
+        )
+        self.assertTrue(recent_search)
+
+        future_search = re.search(
+            rf'"post-clamp">\s*{future_post.title}', response.content.decode()
+        )
+        self.assertFalse(future_search)
 
     def test_search_form_integration(self):
         """
@@ -528,7 +557,12 @@ class SearchResultViewTests(TestCase):
         response = self.client.get(reverse("blog:search_results"), data={"q": "Test"})
 
         self.assertQuerySetEqual(response.context["results"], [post])
-        self.assertContains(response, post.title)
+
+        # Avoid title searches in the post listing
+        title_search = re.search(
+            rf'"title-link">\s*{post.title.upper()}', response.content.decode()
+        )
+        self.assertTrue(title_search)
         self.assertContains(response, post.content)
 
     def test_search_case_insensitive(self):
@@ -571,10 +605,18 @@ class SearchResultViewTests(TestCase):
 
         self.assertQuerySetEqual(response.context["results"], [recent_post])
 
-        self.assertContains(response, recent_post.title)
+        # Avoid title search in the post tree
+        recent_title_search = re.search(
+            rf'"title-link">\s*{recent_post.title.upper()}', response.content.decode()
+        )
+        self.assertTrue(recent_title_search)
         self.assertContains(response, recent_post.content)
 
-        self.assertNotContains(response, future_post.title)
+        # Avoid title search in the post tree
+        future_title_search = re.search(
+            rf'"title-link">\s*{future_post.title.upper()}', response.content.decode()
+        )
+        self.assertFalse(future_title_search)
         self.assertNotContains(response, future_post.content)
 
     def test_empty_query(self):
@@ -685,8 +727,16 @@ class SearchResultViewTests(TestCase):
 
         self.assertQuerySetEqual(response.context["tree_posts"], [recent_post])
 
-        self.assertContains(response, recent_post.title)
-        self.assertNotContains(response, future_post.title)
+        # Avoid title searches in the post listing
+        recent_search = re.search(
+            rf'"post-clamp">\s*{recent_post.title}', response.content.decode()
+        )
+        self.assertTrue(recent_search)
+
+        future_search = re.search(
+            rf'"post-clamp">\s*{future_post.title}', response.content.decode()
+        )
+        self.assertFalse(future_search)
 
     def test_search_form_integration(self):
         """

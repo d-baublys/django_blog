@@ -4,31 +4,71 @@ from django.utils import timezone
 from ..models import Post
 
 
-def create_post(title="Test Post", content="", pub_date=None, user=None):
+# Helper function
+def create_post(
+    user, title="Test Post", content="This is test content.", pub_date=None
+):
     if pub_date is None:
         pub_date = timezone.now()
-    return Post.objects.create(title=title, content=content, pub_date=pub_date, user=user)
+
+    return Post.objects.create(
+        title=title, content=content, pub_date=pub_date, user=user
+    )
 
 
 class PostModelTests(TestCase):
-    def setUp(self):
-        self.user = User.objects.create_user(username="test_user", password="12345")
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = User.objects.create_user(username="test_user", password="12345")
 
     def test_title_length_limit(self):
+        """
+        Verify the title field adheres to the max_length limit.
+        """
         post = create_post(user=self.user)
         max_len = post._meta.get_field("title").max_length
         self.assertEqual(max_len, 200)
 
     def test_pub_date_label(self):
+        """
+        Verify the custom verbose name is the expected label.
+        """
         post = create_post(user=self.user)
         field_label = post._meta.get_field("pub_date").verbose_name
         self.assertEqual(field_label, "Date published")
 
     def test_slug_creation(self):
-        post = create_post(title="A slugified TITLE: 123", user=self.user)
-        self.assertEqual(post.slug, "a-slugified-title-123")
+        """
+        Verify the slug is created automatically from the title.
+        """
+        post = create_post(user=self.user, title="A TITLE to slugify: 123")
+        self.assertEqual(post.slug, "a-title-to-slugify-123")
+
+    def test_unique_slug_condition(self):
+        """
+        Verify that posts with the same title and pub_date month and year cannot have identical slugs.
+        """
+        date_one = timezone.datetime(
+            2024, 8, 10, tzinfo=timezone.get_current_timezone()
+        )
+        date_two = timezone.datetime(
+            2024, 9, 10, tzinfo=timezone.get_current_timezone()
+        )
+        date_three = timezone.datetime(
+            2025, 8, 10, tzinfo=timezone.get_current_timezone()
+        )
+
+        post_one = create_post(user=self.user, pub_date=date_one)
+        post_two = create_post(user=self.user, pub_date=date_one)
+        post_three = create_post(user=self.user, pub_date=date_two)
+        post_four = create_post(user=self.user, pub_date=date_three)
+
+        self.assertNotEqual(
+            post_one.slug, post_two.slug
+        )  # Same title/year/month
+        self.assertEqual(post_one.slug, post_three.slug)  # Different month
+        self.assertEqual(post_one.slug, post_four.slug)  # Different year
 
     def test_string_representation(self):
         post = create_post(user=self.user)
         self.assertEqual(post.title, str(post))
-       
