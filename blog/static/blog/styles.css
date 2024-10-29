@@ -67,7 +67,7 @@ li {
     font-size: 1.5rem;
 }
 
-@media screen and (min-width: 30rem) {
+@media screen and (min-width: 37.5rem) {
     .overlay-text.lower {
         font-size: 2rem;
     }
@@ -186,7 +186,7 @@ form button:focus {
     white-space: nowrap;
 }
 
-@media screen and (min-width: 30rem) {
+@media screen and (min-width: 37.5rem) {
     .overlay-text {
         line-height: 1;
     }
