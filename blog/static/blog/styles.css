@@ -339,9 +339,12 @@ form button:focus {
 }
 
 .post-body {
-    padding: 1rem 0;
     overflow: auto;
     overflow-wrap: break-word;
+}
+
+.post-body p, .post-body img {
+    margin: 1rem 0;
 }
 
 .post-body img {
@@ -355,13 +358,13 @@ form button:focus {
     }
 }
 
-p:has(> .img-center) {
+p:has(> .img-centre) {
     text-align: center;
 }
 
 @media screen and (min-width: 30rem) {
-    img.img-center {
-        width: 75% !important;
+    img.img-centre {
+        max-width: 75%;
     }
 }
 
