@@ -8,7 +8,9 @@
     --theme-line: 1px solid var(--colour-mid-grey);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
 }
@@ -16,7 +18,6 @@
 body {
     display: flex;
     flex-direction: column;
-    min-width: 20rem;
     min-height: 100vh;
     background-color: #fff;
 }
@@ -41,6 +42,15 @@ ul {
 
 li {
     cursor: pointer;
+}
+
+pre {
+    background-color: var(--colour-light-grey);
+    border: var(--theme-line);
+    border-left: none;
+    border-right: none;
+    padding: 1rem;
+    overflow: auto;
 }
 
 /* || Links */
@@ -91,6 +101,10 @@ li {
 .post-dir {
     font-weight: bold;
     text-transform: uppercase;
+}
+
+code {
+    font-size: 0.75rem;
 }
 
 /* || Forms */
@@ -183,7 +197,7 @@ form button:focus {
 .overlay-text {
     padding: 1rem;
     line-height: 1.33;
-    white-space: nowrap;
+    text-align: center;
 }
 
 @media screen and (min-width: 37.5rem) {
@@ -335,7 +349,7 @@ form button:focus {
 
 .blog-post,
 .empty-results {
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
 }
 
 .post-body {
@@ -343,7 +357,8 @@ form button:focus {
     overflow-wrap: break-word;
 }
 
-.post-body p, .post-body img {
+.post-body p,
+.post-body img {
     margin: 1rem 0;
 }
 
@@ -414,13 +429,7 @@ p:has(> .img-centre) {
     content: "\25BC";
     display: inline-block;
     margin-right: 0.5rem;
-    font-family:
-        Cambria,
-        Cochin,
-        Georgia,
-        Times,
-        "Times New Roman",
-        serif;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     transform: rotate(-90deg);
     transition: 0.05s linear;
 }

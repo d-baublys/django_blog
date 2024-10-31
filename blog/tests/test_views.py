@@ -102,7 +102,9 @@ class HomeViewTests(TestCase):
         response = self.client.get(reverse("blog:home"))
 
         self.assertQuerySetEqual(response.context["paginated_posts"], [])
-        self.assertContains(response, '<p class="empty-listing">No posts available.</p>')
+        self.assertContains(
+            response, '<p class="empty-listing">No posts available.</p>'
+        )
 
     def test_post_listing(self):
         """

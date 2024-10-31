@@ -73,7 +73,9 @@ class PostModelTests(TestCase):
         and the resulting URL is accessible.
         """
         post = create_post(user=self.user, title="😀😀😀")
-        self.assertRegex(post.slug, r"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
+        self.assertRegex(
+            post.slug, r"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+        )
         response = self.client.get(
             f"/{post.pub_date.year}/{post.pub_date.month}/{post.slug}"
         )

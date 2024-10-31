@@ -91,8 +91,8 @@ class SearchResultView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        query = self.request.GET.get("q", "")[:SearchForm().fields["q"].max_length]
-        
+        query = self.request.GET.get("q", "")[: SearchForm().fields["q"].max_length]
+
         context["form"] = SearchForm(initial={"q": query})  # For display/interaction
         context["query"] = query
         context["tree_posts"] = Post.objects.filter(

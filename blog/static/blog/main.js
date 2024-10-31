@@ -96,7 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     ? "block"
                     : setTimeout(() => (childUl.style.display = "none"), 100);
             setTimeout(
-                () => (childUl.style.opacity = childUl.style.opacity === "0" ? "1" : "0"), 0
+                () => (childUl.style.opacity = childUl.style.opacity === "0" ? "1" : "0"),
+                0
             );
         }
     }
