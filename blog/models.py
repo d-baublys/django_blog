@@ -1,3 +1,4 @@
+import uuid
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.contrib.auth.models import User
@@ -13,6 +14,9 @@ class Post(models.Model):
 
     def get_slug(self, title):
         original_slug = slugify(title)
+        if not original_slug:
+            return str(uuid.uuid4())
+
         unique_slug = original_slug
         counter = 1
         while Post.objects.filter(

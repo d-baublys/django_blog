@@ -345,7 +345,8 @@ class PostDetailViewTests(TestCase):
 
     def test_future_post_not_accessible(self):
         """
-        Verify posts with a future publication date are not accessible in the front-end.
+        Verify posts with a future publication date are not accessible in the
+        front-end.
         """
         post = create_post(
             user=self.user, pub_date=timezone.now() + datetime.timedelta(days=1)

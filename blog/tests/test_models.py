@@ -39,14 +39,50 @@ class PostModelTests(TestCase):
 
     def test_slug_creation(self):
         """
-        Verify the slug is created automatically from the title.
+        Verify the slug is created automatically from the title for new posts.
         """
         post = create_post(user=self.user, title="A TITLE to slugify: 123")
         self.assertEqual(post.slug, "a-title-to-slugify-123")
 
+    def test_existing_slugs_unchanged(self):
+        """
+        Verify re-saving an existing post without modifying its title does not
+        change its slug.
+        """
+        post = create_post(user=self.user, title="A TITLE to slugify: 123")
+        slug_before = post.slug
+        post.save()
+        slug_after = post.slug
+        self.assertEqual(slug_before, slug_after)
+
+    def test_slug_changes_with_title(self):
+        """
+        Verify re-saving an existing post after modifying its title also updates
+        its slug.
+        """
+        post = create_post(user=self.user, title="A TITLE to slugify: 123")
+        slug_before = post.slug
+        post.title = "This title has been changed"
+        post.save()
+        slug_after = post.slug
+        self.assertNotEqual(slug_before, slug_after)
+
+    def test_non_alpha_title_slug(self):
+        """
+        Verify posts with titles that cannot be slugified have a UUID as a slug
+        and the resulting URL is accessible.
+        """
+        post = create_post(user=self.user, title="😀😀😀")
+        self.assertRegex(post.slug, r"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}")
+        response = self.client.get(
+            f"/{post.pub_date.year}/{post.pub_date.month}/{post.slug}"
+        )
+        self.assertEqual(response.status_code, 200)
+
     def test_unique_slug_condition(self):
         """
-        Verify that posts with the same title and pub_date month and year cannot have identical slugs.
+        Verify that posts with the same title and pub_date month and year cannot
+        have identical slugs.
         """
         date_one = timezone.datetime(
             2024, 8, 10, tzinfo=timezone.get_current_timezone()
@@ -63,9 +99,7 @@ class PostModelTests(TestCase):
         post_three = create_post(user=self.user, pub_date=date_two)
         post_four = create_post(user=self.user, pub_date=date_three)
 
-        self.assertNotEqual(
-            post_one.slug, post_two.slug
-        )  # Same title/year/month
+        self.assertNotEqual(post_one.slug, post_two.slug)  # Same title/year/month
         self.assertEqual(post_one.slug, post_three.slug)  # Different month
         self.assertEqual(post_one.slug, post_four.slug)  # Different year
 
