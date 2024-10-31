@@ -11,8 +11,8 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(default="", max_length=200)
 
-    def save(self, *args, **kwargs):
-        original_slug = slugify(self.title)
+    def get_slug(self, title):
+        original_slug = slugify(title)
         unique_slug = original_slug
         counter = 1
         while Post.objects.filter(
@@ -22,7 +22,14 @@ class Post(models.Model):
         ).exists():
             unique_slug = f"{original_slug}-{counter}"
             counter += 1
-        self.slug = unique_slug
+
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.pk or (
+            self.pk and Post.objects.get(pk=self.pk).title != self.title
+        ):
+            self.slug = self.get_slug(self.title)
 
         super().save(*args, **kwargs)
 
