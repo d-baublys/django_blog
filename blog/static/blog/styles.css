@@ -32,7 +32,7 @@ h1 {
 }
 
 h2 {
-    margin: 1rem 0;
+    margin-bottom: 1.5rem;
     font-size: 1.25rem;
 }
 
@@ -50,6 +50,7 @@ pre {
     border-left: none;
     border-right: none;
     padding: 1rem;
+    margin-bottom: 2rem;
     overflow: auto;
 }
 
@@ -92,7 +93,7 @@ pre {
 .post-title,
 .result-title,
 .empty-listing {
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     font-size: 1.75rem;
     font-weight: bold;
     overflow-wrap: break-word;
@@ -112,7 +113,6 @@ code {
 form {
     display: flex;
     height: 2rem;
-    margin-bottom: 1rem;
 }
 
 form div {
@@ -347,19 +347,18 @@ form button:focus {
     }
 }
 
+.empty-results {
+    padding-top: 0.5rem;
+}
+
 .blog-post,
 .empty-results {
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 .post-body {
     overflow: auto;
     overflow-wrap: break-word;
-}
-
-.post-body p,
-.post-body img {
-    margin: 1rem 0;
 }
 
 .post-body img {
@@ -383,8 +382,26 @@ p:has(> .img-centre) {
     }
 }
 
+.img-centre,
+.post-body p {
+    margin-bottom: 2rem;
+}
+
+.img-left {
+    margin-right: 1rem;
+}
+
+.img-right {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
 .blog-post footer {
     border-bottom: var(--theme-line);
+}
+
+.clear {
+    clear: both;
 }
 
 /* Sidebar */
@@ -404,11 +421,16 @@ p:has(> .img-centre) {
 
 .sbar-section {
     width: 100%;
+    margin-bottom: 1rem;
+}
+
+.sbar-section h2 {
+    padding-bottom: 0.5rem;
+    margin-top: 1rem;
 }
 
 .sidebar h2 {
     border-bottom: var(--theme-line);
-    padding: 0.5rem 0;
 }
 
 /* Post Tree */
@@ -422,7 +444,7 @@ p:has(> .img-centre) {
 }
 
 .post-tree li {
-    margin: 0.5rem auto;
+    margin: 0.5rem 0;
 }
 
 .post-tree li::before {
@@ -432,6 +454,10 @@ p:has(> .img-centre) {
     font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     transform: rotate(-90deg);
     transition: 0.05s linear;
+}
+
+.post-tree li:not(:has(ul)) {
+    margin: 0.75rem 0;
 }
 
 .post-tree li:not(:has(ul)):before {

@@ -134,6 +134,7 @@ CKEDITOR_CONFIGS = {
     "default": {
         "toolbar": "full",
         "scayt_autoStartup": True,
+        "width": "734px",
     }
 }
 
