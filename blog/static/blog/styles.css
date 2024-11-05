@@ -382,7 +382,6 @@ p:has(> .img-centre) {
     }
 }
 
-.img-centre,
 .post-body p {
     margin-bottom: 2rem;
 }
