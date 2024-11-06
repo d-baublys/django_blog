@@ -163,7 +163,7 @@ form button:focus {
 .banner-image {
     z-index: 0;
     width: 100%;
-    background-image: url("../blog/images/sky-royalty-free-1200w.png");
+    background-image: url("images/sky-royalty-free-1200w.png");
     background-attachment: fixed;
     background-position: top;
     background-size: cover;
@@ -171,13 +171,13 @@ form button:focus {
 
 @media screen and (max-width: 30rem) {
     .banner-image {
-        background-image: url("../blog/images/sky-royalty-free-480w.png");
+        background-image: url("images/sky-royalty-free-480w.png");
     }
 }
 
 @media screen and (min-width: 30rem) and (max-width: 48rem) {
     .banner-image {
-        background-image: url("../blog/images/sky-royalty-free-768w.png");
+        background-image: url("images/sky-royalty-free-768w.png");
     }
 }
 
@@ -361,6 +361,10 @@ form button:focus {
     overflow-wrap: break-word;
 }
 
+.post-body p {
+    margin-bottom: 2rem;
+}
+
 .post-body img {
     max-width: 100%;
     height: auto !important;
@@ -372,6 +376,19 @@ form button:focus {
     }
 }
 
+.post-body img:not(.img-centre) {
+    margin: 0 0 2rem 0;
+}
+
+@media screen and (min-width: 30rem) {
+    .post-body img.img-left {
+        margin: 0 1rem 0 0;
+    }
+    .post-body img.img-right {
+        margin: 0 0 0 1rem;
+    }
+}
+
 p:has(> .img-centre) {
     text-align: center;
 }
@@ -380,19 +397,6 @@ p:has(> .img-centre) {
     img.img-centre {
         max-width: 75%;
     }
-}
-
-.post-body p {
-    margin-bottom: 2rem;
-}
-
-.img-left {
-    margin-right: 1rem;
-}
-
-.img-right {
-    margin-left: 1rem;
-    margin-top: 1rem;
 }
 
 .blog-post footer {
