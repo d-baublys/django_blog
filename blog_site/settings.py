@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get(
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["web-production-17d9.up.railway.app", "127.0.0.1"]
+ALLOWED_HOSTS = ["db-blog.co.uk", "127.0.0.1"]
 
 
 # Application definition
@@ -183,4 +183,4 @@ else:
 
 MEDIA_ROOT = Path.joinpath(BASE_DIR, "media")
 
-CSRF_TRUSTED_ORIGINS = ["https://web-production-17d9.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://db-blog.co.uk"]
