@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "storages",
     "ckeditor",
     "ckeditor_uploader",
 ]
@@ -155,31 +154,13 @@ if "DATABASE_URL" in os.environ:
         conn_health_checks=True,
     )
 
-if not DEBUG:
-    STORAGES = {
-        "default": {
-            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-            "OPTIONS": {
-                "access_key": os.getenv("AWS_ACCESS_KEY_ID"),
-                "secret_key": os.getenv("AWS_SECRET_ACCESS_KEY"),
-                "bucket_name": os.getenv("AWS_STORAGE_BUCKET_NAME"),
-                "region_name": os.getenv("AWS_S3_REGION_NAME"),
-                "object_parameters": {"CacheControl": "max-age=86400"},
-                "querystring_auth": False,
-            },
-        },
-        "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-        },
-    }
-    MEDIA_URL = f"https://{os.getenv('AWS_STORAGE_BUCKET_NAME')}.s3.amazonaws.com/"
-else:
-    STORAGES = {
-        "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-        },
-    }
-    MEDIA_URL = "media/"
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+MEDIA_URL = "media/"
 
 MEDIA_ROOT = Path.joinpath(BASE_DIR, "media")
 
