@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import json
 import dj_database_url
 import os
 from dotenv import load_dotenv
@@ -21,21 +22,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env_path = load_dotenv(os.path.join(BASE_DIR, ".env"))
 load_dotenv(env_path)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-y9he9ejre%1xi)2h=pfyd2m#7hhsk-09uhgj3^9i@8o^n(by3x"
-
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
     "django-insecure-y9he9ejre%1xi)2h=pfyd2m#7hhsk-09uhgj3^9i@8o^n(by3x",
 )
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
-ALLOWED_HOSTS = ["db-blog.co.uk", "127.0.0.1"]
-
+ALLOWED_HOSTS = json.loads(os.environ.get("ALLOWED_HOSTS"))
 
 # Application definition
 
@@ -183,4 +177,4 @@ else:
 
 MEDIA_ROOT = Path.joinpath(BASE_DIR, "media")
 
-CSRF_TRUSTED_ORIGINS = ["https://db-blog.co.uk"]
+CSRF_TRUSTED_ORIGINS = json.loads(os.environ.get("CSRF_TRUSTED_ORIGINS"))
