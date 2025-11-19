@@ -2,8 +2,6 @@
 
 A blog site used primarily to showcase various front-end and back-end features, but also for documenting some of my web development learning journey.
 
-Live Demo: https://db-blog.co.uk
-
 ## Stack
 - **Front-end:** HTML, CSS, JavaScript
 - **Back-end:** Django
